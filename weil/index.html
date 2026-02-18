@@ -86,8 +86,8 @@
             <div class="login-field">
                 <input type="password" id="login-pass" placeholder="Password" autocomplete="off" />
             </div>
-            <button type="submit" class="login-btn">Войти</button>
-            <div class="login-error" id="login-error">Неверный логин или пароль</div>
+            <button type="submit" class="login-btn">Sign In</button>
+            <div class="login-error" id="login-error">Invalid login or password</div>
         </form>
     </div>
 
@@ -134,30 +134,30 @@
             }
         });
 
-        // Dynamically load React + Babel, then render dashboard
+        // Dynamically load React + Babel sequentially, then render dashboard
         function loadReact() {
             const scripts = [
                 'https://unpkg.com/react@18/umd/react.production.min.js',
                 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
                 'https://unpkg.com/@babel/standalone/babel.min.js'
             ];
-            let loaded = 0;
-            scripts.forEach(src => {
+            function loadNext(i) {
+                if (i >= scripts.length) {
+                    // All loaded — transform and execute JSX via Babel
+                    const code = document.getElementById('dashboard-jsx').textContent;
+                    const transformed = Babel.transform(code, { presets: ['react'] }).code;
+                    const s = document.createElement('script');
+                    s.textContent = transformed;
+                    document.body.appendChild(s);
+                    return;
+                }
                 const s = document.createElement('script');
-                s.src = src;
+                s.src = scripts[i];
                 s.crossOrigin = 'anonymous';
-                s.onload = () => {
-                    loaded++;
-                    if (loaded === scripts.length) {
-                        // All loaded, now add the JSX script
-                        const jsx = document.createElement('script');
-                        jsx.type = 'text/babel';
-                        jsx.textContent = document.getElementById('dashboard-jsx').textContent;
-                        document.body.appendChild(jsx);
-                    }
-                };
+                s.onload = () => loadNext(i + 1);
                 document.head.appendChild(s);
-            });
+            }
+            loadNext(0);
         }
     </script>
 
