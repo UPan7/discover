@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weil Germany Microsite - Requirements Analysis</title>
+    <title>Weil Germany Microsite - Project Scope & Delivery Plan</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -143,7 +143,6 @@
             ];
             function loadNext(i) {
                 if (i >= scripts.length) {
-                    // All loaded — transform and execute JSX via Babel
                     const code = document.getElementById('dashboard-jsx').textContent;
                     const transformed = Babel.transform(code, { presets: ['react'] }).code;
                     const s = document.createElement('script');
@@ -161,167 +160,139 @@
         }
     </script>
 
-    <!-- DASHBOARD JSX (not executed until React is loaded) -->
+    <!-- DASHBOARD JSX v2 -->
     <script id="dashboard-jsx" type="text/plain">
 const { useState, useEffect } = React;
 
-const sections = [
-  {
-    id: "home", title: "HOME",
-    complexity: 2, clarity: 4, risk: 1,
-    features: [
-      { name: "Deal Highlights / Selected References", effort: "Medium", status: "question", note: "Briefing says 'transaction focus'. Custom Post Type with filters (Practice Area, year)? Or static content block? How often updated?", rec: "We recommend a filterable Custom Post Type for maximum flexibility and SEO value." },
-      { name: "Hero Section + Local Imagery", effort: "Low", status: "clear", note: "Static hero area with local imagery as specified in briefing." },
-      { name: "Key USP / Value Proposition", effort: "Low", status: "clear", note: "Static text block, editorially maintained." }
-    ],
-    questions: ["Is the Deal Highlights section dynamic (filterable) or static content?"]
-  },
-  {
-    id: "team", title: "TEAM / PEOPLE",
-    complexity: 5, clarity: 2, risk: 5,
-    features: [
-      { name: "CV Mirroring DE to weil.com (EN)", effort: "Very High", status: "blocker", note: "Briefing: English CVs must be automatically mirrored to weil.com People section. Core dependency on Sitecore API access. Not feasible without US IT team. Open: data format, required fields, sync direction.", rec: "Phase 1: Manual CSV export. Phase 2: API integration once Sitecore access is confirmed with US IT." },
-      { name: "Track Record and Press Release Sync", effort: "Medium", status: "question", note: "Should information from the main site (weil.com) also be synced, or only locally published content?", rec: "Start with local content only; add weil.com sync in Phase 2 via Sitecore API." },
-      { name: "Legal Directories Integration (JUVE, Chambers)", effort: "Medium", status: "question", note: "Neither JUVE nor Chambers offer a public API. Manual maintenance? Or is automated import expected?", rec: "Manual badge/ranking fields on profiles. No public API exists for automation." },
-      { name: "Attorney Profiles (Partner, Counsel, Associates)", effort: "High", status: "question", note: "Same functionality as on the main site with search, filters, and partner listing? Exact field specification for DE site to be confirmed.", rec: "Replicate weil.com profile structure using ACF Pro. Request field template from US team." },
-      { name: "Video Integration on Profile Pages", effort: "Medium", status: "clear", note: "Briefing: Partner pages must support video integration. Vimeo/YouTube embed with GDPR 2-click consent." }
-    ],
-    questions: [
-      "What fields does a complete attorney profile contain? Is there a template from weil.com?",
-      "CV mirroring: What data format does the US team expect? Which fields are mandatory?",
-      "JUVE/Chambers: Manual maintenance or automated import expected?",
-      "How many profiles will be created initially? (5, 20, 50+?)"
-    ]
-  },
-  {
-    id: "expertise", title: "EXPERTISE / SERVICES",
-    complexity: 3, clarity: 3, risk: 2,
-    features: [
-      { name: "Insights Dynamically Linked to Partners", effort: "High", status: "question", note: "Briefing: Insights section (articles/updates) dynamically linked to Partners. Three-way relation: Person, Practice, Insight. Data model must be carefully planned.", rec: "ACF Relationship fields linking Insight CPT to Person and Practice taxonomies." },
-      { name: "7 Practice Areas (Tab-Based Layout)", effort: "Medium", status: "clear", note: "M&A/PE, Litigation/Arbitration, Banking & Finance, Regulatory/Compliance, Restructuring/Insolvency, Tax, Employment. Implemented as a tab block component rather than separate landing pages." }
-    ],
-    questions: ["Are Insights authored by DE attorneys or imported from weil.com?"]
-  },
-  {
-    id: "news", title: "NEWS & INSIGHTS",
-    complexity: 3, clarity: 2, risk: 3,
-    features: [
-      { name: "US Newsroom Sync (optional)", effort: "High", status: "blocker", note: "Briefing: Optional synchronization of US articles. Which articles exactly? Only Germany-relevant? Who filters? Depends on Sitecore API access.", rec: "Phase 1: Manual reposting of selected articles. Phase 2: Automated sync via Sitecore API with tag-based filtering." },
-      { name: "Insights / Thought Leadership", effort: "Medium", status: "question", note: "Briefing mentions both News and Insights. Separate content type or same? Linking to persons and practices required.", rec: "Single CPT with category taxonomy (News, Insight, Press Release) for simplicity." },
-      { name: "Filter and Search Functionality", effort: "Medium", status: "question", note: "weil.com/newsroom has filters by Type, Practice, Sector, Office. Same complexity desired for de.weil.com?" },
-      { name: "Local Press Releases / News", effort: "Low", status: "clear", note: "Standard WordPress posts with categorization." }
-    ],
-    questions: [
-      "US Sync: Which articles specifically? Only Germany-tagged? Who decides what gets synced?",
-      "News vs. Insights: One content type with categories, or two separate types?",
-      "Is automatic translation of US articles required or is English sufficient?"
-    ]
-  },
-  {
-    id: "careers", title: "CAREERS / HR HUB",
-    complexity: 4, clarity: 1, risk: 5,
-    features: [
-      { name: "Open Positions - Job Listings", effort: "???", status: "blocker", note: "Briefing: Offene Positionen - Kritisch fuer Recruiting. CRITICAL UNKNOWN: Manual WordPress management? Or ATS integration (Workday, Greenhouse, SAP SF)? weil.com links to careers.weil.com - own platform or third-party?", rec: "Phase 1: WordPress CPT with manual job management. Phase 2: ATS integration if system is identified." },
-      { name: "Application Form / Flow", effort: "???", status: "blocker", note: "Not specified in briefing but implied. Simple contact form via email? Or full application process with CV upload, cover letter, GDPR consent?", rec: "Phase 1: Simple form with email notification + GDPR consent checkbox. Full ATS flow in Phase 2." },
-      { name: "Life at Weil Germany - Testimonials", effort: "Medium", status: "question", note: "Briefing: Erfahrungsberichte. Video testimonials or text + photo? Who produces the content?" },
-      { name: "Benefits Section", effort: "Low", status: "clear", note: "Static content, optionally with icons/infographics." }
-    ],
-    questions: [
-      "Is there an existing ATS (Applicant Tracking System)? If so, which one?",
-      "careers.weil.com: Own system or third-party? Can de.weil.com link to it?",
-      "Should applications be submitted directly via de.weil.com or redirect externally?",
-      "How and where will applicant data be stored? How will Datenschutzerklaerung confirmation work (e.g. confirmation email with opt-in link after submission)?"
-    ]
-  },
-  {
-    id: "i18n", title: "MULTILINGUAL (DE/EN)",
-    complexity: 3, clarity: 2, risk: 3,
-    features: [
-      { name: "Content Translation (all pages)", effort: "Very High", status: "blocker", note: "Briefing: Entire site must be available in DE + EN. Every page, profile, listing in two languages. With 50+ profiles this is a massive content effort.", rec: "WPML plugin with professional translation workflow. Prioritize key pages for go-live, expand incrementally." },
-      { name: "WPML / Polylang Plugin Setup", effort: "Medium", status: "clear", note: "Plugin configuration for all Custom Post Types, taxonomies, ACF fields." },
-      { name: "Language Switch UX + SEO", effort: "Low", status: "clear", note: "DE/EN toggle in header, hreflang tags, canonical URLs." }
-    ],
-    questions: ["Who translates content? Internal team, agency, or machine translation?"]
-  },
-  {
-    id: "tech", title: "TECHNICAL REQUIREMENTS",
-    complexity: 3, clarity: 3, risk: 3,
-    features: [
-      { name: "GDPR: Applicant Data Protection", effort: "High", status: "blocker", note: "Briefing: Security & Compliance (DSGVO!). If application form exists: retention periods, deletion concept, DPA with WPEngine (US hosting!), consent declaration.", rec: "Implement automated data deletion after 6 months. Verify DPA with WPEngine before go-live." },
-      { name: "GDPR: Cookie Consent Management", effort: "Medium", status: "question", note: "Granular consent required for DE/EU (Marketing, Analytics, Functional)." },
-      { name: "Video: Native Player + Lazy Loading", effort: "Medium", status: "question", note: "Briefing: Native Video Player, Vimeo/YouTube support, optimized for performance (Lazy Loading). 2-click GDPR consent needed." },
-      { name: "Imprint + Privacy Policy", effort: "Low", status: "question", note: "Must be provided by Weil legal team. weil.com has separate EU Privacy Policy." },
-      { name: "Mobile-First + Core Web Vitals", effort: "Medium", status: "clear", note: "Briefing: Optimizations for mobile (Core Web Vitals, images, etc.). Responsive design, image optimization, performance budget." },
-      { name: "Instant-Editing (CMS UX)", effort: "Low", status: "clear", note: "Custom theme development based on client technical specification. WordPress Gutenberg editor with tailored editing experience." }
-    ],
-    questions: [
-      "Is there an existing DPA (Data Processing Agreement) with WPEngine?",
-      "Video player preference: Custom player or Vimeo/YouTube embed with facade pattern?"
-    ]
-  },
-  {
-    id: "infra", title: "INFRASTRUCTURE",
-    complexity: 3, clarity: 2, risk: 4,
-    features: [
-      { name: "Sitecore API Access (weil.com)", effort: "High", status: "blocker", note: "Required for CV mirroring and News sync. Sitecore version (XP, XM, XM Cloud)? GraphQL/REST enabled? API keys? Technical contact?", rec: "Request API documentation and test credentials from US IT as first priority action." },
-      { name: "WPEngine Access and Permissions", effort: "Low", status: "blocker", note: "Briefing: Hosting via WPEngine. What access level? Admin, SFTP/SSH, staging? Plugin restrictions?", rec: "Request full admin access with staging environment. Verify plugin whitelist compatibility." },
-      { name: "Deployment Workflow", effort: "Medium", status: "question", note: "Git-based? Manual via dashboard? Staging to Production process? Testing strategy per briefing." }
-    ],
-    questions: [
-      "Sitecore version on weil.com? (XP, XM, XM Cloud?)",
-      "Who is the technical contact on the US side?",
-      "What access level? Admin, SFTP/SSH, staging? Plugin restrictions?",
-      "Is there an existing deployment or approval workflow?"
-    ]
-  }
+/* ── DATA ── */
+
+const modules = [
+  { id: "team", title: "TEAM / PEOPLE", priority: "High", items: [
+    "50\u201360 Anwaltsprofile (Voll: Partner/Counsel, Kompakt: Junior)",
+    "Felder: Name, Foto, Titel, Practice Areas, Focus, Education, Background, Track Record, Publications, Languages, V-Card, Video (Partner), JUVE/Chambers",
+    "Suche + Filter (Practice Area, Titel, Name)",
+    "2-Click GDPR Video-Embed (Vimeo/YouTube)",
+    "REST API Endpunkt f\u00fcr CV-Daten (US-Seite pull)"
+  ]},
+  { id: "home", title: "HOME", priority: "Medium", items: [
+    "Long-Scroll: Hero, Kurzvorstellung, Practice Areas (7 Tabs \u2192 /expertise/), Featured Team (4\u20136 Partner \u2192 /team/), Deal Highlights (dynamisch, CPT), News Teaser, Karriere Teaser, Kontakt (Footer-Bereich)",
+    "Globale Suche (Anw\u00e4lte, News, Deals)"
+  ]},
+  { id: "expertise", title: "EXPERTISE", priority: "Medium", items: [
+    "7 Practice Areas, je eine Seite (ein Template)",
+    "Automatisch bef\u00fcllt: verkn\u00fcpfte Anw\u00e4lte, Mandate/Deals, Beitr\u00e4ge",
+    "Vom Kunden: Beschreibungstext pro Practice Area"
+  ]},
+  { id: "news", title: "NEWS & INSIGHTS", priority: "Medium", items: [
+    "Ein CPT, lokaler Content + RSS-Import (weil.com, Germany-Tag)",
+    "Archiv mit Filter und Suche"
+  ]},
+  { id: "careers", title: "CAREERS", priority: "Low", items: [
+    "Workday Embed/Link (kein eigener Build)",
+    "Testimonials, Benefits (statisch)"
+  ]},
+  { id: "i18n", title: "MULTILINGUAL", priority: "Medium", items: [
+    "WPML + DeepL, DE/EN Toggle, hreflang"
+  ]},
+  { id: "tech", title: "TECHNICAL / COMPLIANCE", priority: "Medium", items: [
+    "Cookie Consent (wasserdicht, DE/EU)",
+    "2-Click Video Facade, Impressum, Datenschutz",
+    "Mobile-first, Core Web Vitals"
+  ]},
+  { id: "infra", title: "INFRASTRUCTURE", priority: "Low", items: [
+    "WPEngine (Staging + Prod), Git Deployment, SSL/DNS"
+  ]},
+  { id: "design", title: "DESIGN", priority: "Medium", items: [
+    "Designkonzept basierend auf weil.com Templates, mit individuellen L\u00f6sungen",
+    "Figma: Home, Profil, Listing, Practice Area, News, Karriere",
+    "Mobile-first, responsive"
+  ]}
 ];
 
-const effortMap = { Low: { color: "#43a047", label: "1-2 days" }, Medium: { color: "#c49000", label: "3-5 days" }, High: { color: "#d84315", label: "1-2 weeks" }, "Very High": { color: "#b71c1c", label: "3-4 weeks" }, "???": { color: "#880e4f", label: "TBD" } };
-const statusMap = {
-  clear: { icon: "\u2713", color: "#43a047", bg: "rgba(67,160,71,0.08)", label: "Resolved" },
-  question: { icon: "?", color: "#c49000", bg: "rgba(196,144,0,0.08)", label: "Open Question" },
-  blocker: { icon: "!", color: "#c62828", bg: "rgba(198,40,40,0.08)", label: "Blocker" }
+const priorityMap = {
+  High:   { color: "#c62828", bg: "rgba(198,40,40,0.08)" },
+  Medium: { color: "#c49000", bg: "rgba(196,144,0,0.08)" },
+  Low:    { color: "#455a64", bg: "rgba(69,90,100,0.08)" }
 };
-const statusOrder = { blocker: 0, question: 1, clear: 2 };
+
+const roadmap = [
+  { week: "W1",   label: "Konzept & Scope",      desc: "Anforderungen, Informationsarchitektur, Datenmodell", color: "#455a64" },
+  { week: "W2\u20133", label: "Wireframes + Content", desc: "Seitenstruktur, Templates. Client liefert: Feedback, erste Inhalte", color: "#c49000" },
+  { week: "W3\u20134", label: "Design",              desc: "Figma UI-Konzept, Brand Abstimmung. Client liefert: Design-Feedback", color: "#c49000" },
+  { week: "W3\u20137", label: "Entwicklung",          desc: "Theme, CPTs, Profile, News + RSS, Careers Embed, REST API", color: "#43a047" },
+  { week: "W5\u20137", label: "Integration",          desc: "WPML + DeepL, Cookie Consent, Legal Pages, Content-Einpflege", color: "#43a047" },
+  { week: "W8\u20139", label: "Testing & Go-Live",    desc: "QA, Performance, SEO-Audit, Deployment, Handover", color: "#43a047" },
+];
+
+const sitemapData = [
+  { path: "/",                   label: "Home",                    desc: "Long-Scroll: Hero, Kurzvorstellung, Practices, Featured Team, Deals, News, Karriere, Kontakt", depth: 0 },
+  { path: "/team/",              label: "Team-\u00dcbersicht",     desc: "Listing + Filter", depth: 0 },
+  { path: "/team/{name}/",       label: "Anwaltsprofil",           desc: "\u00d7 50\u201360", depth: 1 },
+  { path: "/expertise/{slug}/",  label: "Practice Area",           desc: "\u00d7 7, ein Template", depth: 0 },
+  { path: "/news/",              label: "News-Archiv",             desc: "", depth: 0 },
+  { path: "/news/{slug}/",       label: "Einzelartikel",           desc: "", depth: 1 },
+  { path: "/karriere/",          label: "Karriere",                desc: "Workday Embed + Testimonials + Benefits", depth: 0 },
+  { path: "/impressum/",         label: "Impressum",               desc: "", depth: 0 },
+  { path: "/datenschutz/",       label: "Datenschutzerkl\u00e4rung", desc: "", depth: 0 },
+];
+
+const notInScope = [
+  "Content-Erstellung, \u00dcbersetzungen, Fotografie/Video",
+  "WPEngine-Hosting, Plugin-Lizenzen",
+  "DSGVO-Rechtsberatung / AV-Vertrag",
+  "Workday Portal Build",
+  "Aktives Pushing nach weil.com",
+  "Wartung / Support nach Go-Live (separates SLA)"
+];
 
 const sysNodes = [
-  { id: "wp", label: "WordPress CMS", sub: "de.weil.com", x: 310, y: 135, w: 185, h: 70, color: "#43a047", primary: true },
-  { id: "sitecore", label: "Sitecore CMS", sub: "weil.com (US)", x: 310, y: 15, w: 185, h: 58, color: "#1a1a1a" },
-  { id: "wpengine", label: "WPEngine", sub: "Hosting (US)", x: 60, y: 60, w: 155, h: 54, color: "#455a64" },
-  { id: "ats", label: "ATS", sub: "System TBD", x: 590, y: 15, w: 145, h: 54, color: "#d84315" },
-  { id: "api", label: "API / Middleware", sub: "Integration Layer (TBD)", x: 310, y: 75, w: 185, h: 44, color: "#00695c" },
-  { id: "wpml", label: "WPML", sub: "Translation Layer", x: 590, y: 140, w: 145, h: 50, color: "#c49000" },
-  { id: "ed", label: "Editors", sub: "Weil DE Team", x: 60, y: 145, w: 155, h: 50, color: "#546e7a" },
-  { id: "jv", label: "JUVE / Chambers", sub: "Manual Entry (No API)", x: 590, y: 78, w: 145, h: 44, color: "#9e9e9e" },
+  { id: "wp",       label: "WordPress CMS", sub: "de.weil.com",    x: 310, y: 130, w: 185, h: 70, color: "#43a047", primary: true },
+  { id: "sitecore", label: "Sitecore CMS",  sub: "weil.com (US)",  x: 310, y: 15,  w: 185, h: 55, color: "#1a1a1a" },
+  { id: "wpengine", label: "WPEngine",      sub: "Hosting (US)",   x: 60,  y: 15,  w: 155, h: 50, color: "#455a64" },
+  { id: "rss",      label: "RSS Feed",      sub: "weil.com News",  x: 60,  y: 80,  w: 155, h: 50, color: "#455a64" },
+  { id: "editors",  label: "Editors",        sub: "Weil DE Team",   x: 60,  y: 145, w: 155, h: 50, color: "#546e7a" },
+  { id: "wpml",     label: "WPML",          sub: "DE / EN",        x: 590, y: 140, w: 145, h: 50, color: "#c49000" },
+  { id: "workday",  label: "Workday",       sub: "Job Portal",     x: 590, y: 15,  w: 145, h: 50, color: "#9e9e9e" },
+  { id: "juve",     label: "JUVE / Chambers", sub: "Manual",        x: 590, y: 78,  w: 145, h: 44, color: "#9e9e9e" },
 ];
+
 const sysEdges = [
-  { from: "sitecore", to: "api", label: "API (TBD)", risk: true },
-  { from: "api", to: "wp", label: "Content Sync", risk: true },
-  { from: "wpengine", to: "wp", label: "Hosting", risk: false },
-  { from: "ats", to: "wp", label: "Jobs Sync?", risk: true },
-  { from: "ed", to: "wp", label: "Content Mgmt", risk: false },
-  { from: "jv", to: "wp", label: "Manual", risk: false },
-  { from: "wp", to: "wpml", label: "DE / EN", risk: false },
+  { from: "wpengine", to: "wp",       label: "Hosting",             dash: false, color: "#43a047" },
+  { from: "editors",  to: "wp",       label: "Content",             dash: false, color: "#43a047" },
+  { from: "rss",      to: "wp",       label: "News Import",         dash: false, color: "#43a047" },
+  { from: "wp",       to: "wpml",     label: "DE / EN",             dash: false, color: "#43a047" },
+  { from: "wp",       to: "sitecore", label: "REST API (US pulls)", dash: false, color: "#43a047" },
+  { from: "workday",  to: "wp",       label: "Embed",               dash: true,  color: "#9e9e9e" },
+  { from: "juve",     to: "wp",       label: "Manual",              dash: true,  color: "#9e9e9e" },
 ];
+
+const dataModel = [
+  { cpt: "attorney",    purpose: "Profiles (50\u201360)",    relations: "\u2192 practice-area, \u2192 title, \u2190 insight" },
+  { cpt: "insight",     purpose: "News & Artikel",           relations: "\u2192 attorney, \u2192 practice-area" },
+  { cpt: "deal",        purpose: "Deal Highlights",          relations: "\u2192 attorney, \u2192 practice-area, year" },
+  { cpt: "testimonial", purpose: "Mitarbeiter-Stories",      relations: "photo, video (optional)" },
+];
+
+/* ── SYSTEM LANDSCAPE SVG ── */
 
 function SystemDiagram({ hov, setHov }) {
   return (
     <svg viewBox="0 0 800 225" style={{ width: "100%", height: "auto" }}>
       <defs>
-        <marker id="ar" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#c62828" /></marker>
-        <marker id="ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#546e7a" /></marker>
+        <marker id="ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
+        <marker id="agrey" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#9e9e9e" /></marker>
         <filter id="ds"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
       </defs>
       <rect width="800" height="225" fill="#fafaf8" />
-      <g opacity="0.03">{Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" y1={i * 25} x2="800" y2={i * 25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 32 }, (_, i) => <line key={`v${i}`} x1={i * 25} y1="0" x2={i * 25} y2="225" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
+      <g opacity="0.03">{Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="800" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 32 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="225" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
       {sysEdges.map((e, i) => {
         const f = sysNodes.find(n => n.id === e.from), t = sysNodes.find(n => n.id === e.to);
         if (!f || !t) return null;
-        const x1 = f.x + f.w / 2, y1 = f.y + f.h / 2, x2 = t.x + t.w / 2, y2 = t.y + t.h / 2;
-        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+        const x1 = f.x + f.w/2, y1 = f.y + f.h/2, x2 = t.x + t.w/2, y2 = t.y + t.h/2;
+        const mx = (x1+x2)/2, my = (y1+y2)/2;
         return (<g key={i}>
-          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={e.risk ? "#c62828" : "#546e7a"} strokeWidth={e.risk ? 2 : 1.5} strokeDasharray={e.risk ? "8,5" : "none"} opacity={e.risk ? 0.8 : 0.5} markerEnd={e.risk ? "url(#ar)" : "url(#ag)"} />
-          {e.label && <text x={mx} y={my - 7} fill={e.risk ? "#c62828" : "#546e7a"} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif" fontWeight="600">{e.label}</text>}
+          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={e.color} strokeWidth={1.5} strokeDasharray={e.dash ? "8,5" : "none"} opacity={e.dash ? 0.6 : 0.7} markerEnd={e.dash ? "url(#agrey)" : "url(#ag)"} />
+          {e.label && <text x={mx} y={my - 7} fill={e.color} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif" fontWeight="600">{e.label}</text>}
         </g>);
       })}
       {sysNodes.map(n => {
@@ -330,118 +301,84 @@ function SystemDiagram({ hov, setHov }) {
           <g key={n.id} onMouseEnter={() => setHov(n.id)} onMouseLeave={() => setHov(null)} style={{ cursor: "default" }} filter="url(#ds)">
             <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="4" fill={h ? n.color : "#fff"} stroke={n.primary ? "#43a047" : h ? n.color : "#ddd"} strokeWidth={n.primary ? 2 : h ? 1.5 : 1} />
             {n.primary && !h && <line x1={n.x} y1={n.y + n.h} x2={n.x + n.w} y2={n.y + n.h} stroke="#43a047" strokeWidth="3" />}
-            <text x={n.x + n.w / 2} y={n.y + n.h / 2 - (n.sub ? 5 : 0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.label}</text>
-            {n.sub && <text x={n.x + n.w / 2} y={n.y + n.h / 2 + 10} fill={h ? "rgba(255,255,255,0.75)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.sub}</text>}
+            <text x={n.x + n.w/2} y={n.y + n.h/2 - (n.sub ? 5 : 0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.label}</text>
+            {n.sub && <text x={n.x + n.w/2} y={n.y + n.h/2 + 10} fill={h ? "rgba(255,255,255,0.75)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.sub}</text>}
           </g>
         );
       })}
-      <g><line x1="580" y1="215" x2="605" y2="215" stroke="#c62828" strokeWidth="2" strokeDasharray="8,5" opacity="0.8" /><text x="612" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">Unresolved</text><line x1="695" y1="215" x2="720" y2="215" stroke="#546e7a" strokeWidth="1.5" opacity="0.5" /><text x="727" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">Confirmed</text></g>
+      <g><line x1="560" y1="215" x2="585" y2="215" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="592" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">Confirmed</text><line x1="670" y1="215" x2="695" y2="215" stroke="#9e9e9e" strokeWidth="1.5" strokeDasharray="8,5" opacity="0.6" /><text x="702" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">External / Manual</text></g>
     </svg>
   );
 }
+
+/* ── CONTENT FLOW SVG ── */
 
 function ContentFlowDiagram({ hov2, setHov2 }) {
   const sf = "'DM Sans',sans-serif";
   const bw = 150, bh = 52, pw = 175, ph = 48;
   const sX = 30, pX = 335, oX = 650;
   const sources = [
-    { id: "att", label: "DE Attorneys", sub: "Profiles, Bios, CVs", y: 40, color: "#1a1a1a" },
-    { id: "usn", label: "US Newsroom", sub: "Articles via Sitecore", y: 110, color: "#d84315" },
-    { id: "hr", label: "HR Team", sub: "Jobs, Testimonials", y: 180, color: "#d84315" },
-    { id: "mkt", label: "Marketing DE", sub: "News, Insights, Deals", y: 250, color: "#455a64" },
+    { id: "att", label: "DE Attorneys",  sub: "Profiles, Bios",        y: 40,  color: "#1a1a1a" },
+    { id: "rss", label: "RSS Feed",      sub: "weil.com Articles",     y: 110, color: "#455a64" },
+    { id: "mkt", label: "Marketing DE",  sub: "News, Deals, Insights", y: 180, color: "#455a64" },
   ];
   const procs = [
-    { id: "cms", label: "WordPress CMS", sub: "Content Hub", y: 35, h: 58, color: "#43a047", primary: true },
-    { id: "review", label: "Editorial Review", sub: "Quality Assurance", y: 115, h: ph, color: "#455a64" },
-    { id: "trans", label: "Translation DE/EN", sub: "WPML Workflow", y: 185, h: ph, color: "#c49000" },
-    { id: "gdpr", label: "GDPR Compliance", sub: "Consent + Data Protection", y: 255, h: ph, color: "#c62828" },
+    { id: "cms",    label: "WordPress CMS",    sub: "Content Hub",              y: 35,  h: 58, color: "#43a047", primary: true },
+    { id: "review", label: "Editorial Review",  sub: "Quality Assurance",        y: 110, h: ph, color: "#455a64" },
+    { id: "trans",  label: "Translation",       sub: "WPML / DeepL",            y: 175, h: ph, color: "#c49000" },
+    { id: "gdpr",   label: "GDPR / Compliance", sub: "Consent + Data Protection", y: 240, h: ph, color: "#455a64" },
   ];
   const outputs = [
-    { id: "site", label: "de.weil.com", sub: "Public Website (DE+EN)", y: 40, color: "#43a047" },
-    { id: "mirror", label: "weil.com", sub: "CV Mirror via API", y: 110, color: "#d84315" },
-    { id: "seo", label: "Google / SEO", sub: "DE Market Visibility", y: 180, color: "#455a64" },
-    { id: "email", label: "Applicant Flow", sub: "DSGVO Email Confirmation", y: 250, color: "#c62828" },
+    { id: "site",   label: "de.weil.com",      sub: "Public Website (DE+EN)", y: 50,  color: "#43a047" },
+    { id: "mirror", label: "weil.com CV Data",  sub: "REST API",               y: 130, color: "#455a64" },
   ];
-  const decs = [
-    { id: "d1", label: "ATS or\nManual?", x: 240, y: 206, color: "#d84315" },
-    { id: "d2", label: "Agency or\nInternal?", x: 240, y: 276, color: "#c49000" },
+  const flowLines = [
+    { x1: sX+bw, y1: 66,  x2: pX,       y2: 60 },
+    { x1: sX+bw, y1: 136, x2: pX,       y2: 64 },
+    { x1: sX+bw, y1: 206, x2: pX,       y2: 64 },
+    { x1: pX+pw/2, y1: 93,  x2: pX+pw/2, y2: 110 },
+    { x1: pX+pw/2, y1: 158, x2: pX+pw/2, y2: 175 },
+    { x1: pX+pw/2, y1: 223, x2: pX+pw/2, y2: 240 },
+    { x1: pX+pw, y1: 134, x2: oX, y2: 76 },
+    { x1: pX+pw, y1: 60,  x2: oX, y2: 156 },
   ];
-
-  const lines = [
-    { x1: sX + bw, y1: 66, x2: pX, y2: 60, risk: false, lbl: "" },
-    { x1: sX + bw, y1: 136, x2: pX, y2: 64, risk: true, lbl: "Sitecore API" },
-    { x1: sX + bw, y1: 206, x2: 215, y2: 206, risk: true, lbl: "" },
-    { x1: sX + bw, y1: 276, x2: 215, y2: 276, risk: false, lbl: "" },
-    { x1: 265, y1: 206, x2: pX, y2: 70, risk: true, lbl: "" },
-    { x1: 265, y1: 276, x2: pX, y2: 70, risk: false, lbl: "" },
-    { x1: pX + pw / 2, y1: 93, x2: pX + pw / 2, y2: 115, risk: false, lbl: "" },
-    { x1: pX + pw / 2, y1: 163, x2: pX + pw / 2, y2: 185, risk: false, lbl: "" },
-    { x1: pX + pw / 2, y1: 233, x2: pX + pw / 2, y2: 255, risk: false, lbl: "" },
-    { x1: pX + pw, y1: 139, x2: oX, y2: 66, risk: false, lbl: "" },
-    { x1: pX + pw, y1: 60, x2: oX, y2: 136, risk: true, lbl: "API TBD" },
-    { x1: pX + pw, y1: 209, x2: oX, y2: 206, risk: false, lbl: "" },
-    { x1: pX + pw, y1: 279, x2: oX, y2: 276, risk: true, lbl: "" },
-  ];
-
   return (
-    <svg viewBox="0 0 870 340" style={{ width: "100%", height: "auto" }}>
+    <svg viewBox="0 0 870 310" style={{ width: "100%", height: "auto" }}>
       <defs>
-        <marker id="fr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#c62828" /></marker>
-        <marker id="fg2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#546e7a" /></marker>
+        <marker id="fg" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
         <filter id="ds2"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
       </defs>
-      <rect width="870" height="340" fill="#fafaf8" />
-      <g opacity="0.03">{Array.from({ length: 14 }, (_, i) => <line key={`h${i}`} x1="0" y1={i * 25} x2="870" y2={i * 25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 35 }, (_, i) => <line key={`v${i}`} x1={i * 25} y1="0" x2={i * 25} y2="340" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
-
-      <text x={sX + bw / 2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">CONTENT SOURCES</text>
-      <text x={pX + pw / 2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">PROCESSING</text>
-      <text x={oX + bw / 2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">OUTPUTS</text>
-
-      {lines.map((l, i) => (<g key={i}>
-        <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.risk ? "#c62828" : "#546e7a"} strokeWidth={l.risk ? 2 : 1.5} strokeDasharray={l.risk ? "8,5" : "none"} opacity={l.risk ? 0.75 : 0.45} markerEnd={l.risk ? "url(#fr)" : "url(#fg2)"} />
-        {l.lbl && <text x={(l.x1 + l.x2) / 2} y={(l.y1 + l.y2) / 2 - 7} fill={l.risk ? "#c62828" : "#546e7a"} fontSize="7" textAnchor="middle" fontFamily={sf} fontWeight="600">{l.lbl}</text>}
-      </g>))}
-
-      {sources.map(s => { const h = hov2 === s.id; return (<g key={s.id} onMouseEnter={() => setHov2(s.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={sX} y={s.y} width={bw} height={bh} rx="4" fill={h ? s.color : "#fff"} stroke={h ? s.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={sX + bw / 2} y={s.y + 22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{s.label}</text><text x={sX + bw / 2} y={s.y + 37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{s.sub}</text></g>); })}
-
-      {procs.map(p => { const h = hov2 === p.id; return (<g key={p.id} onMouseEnter={() => setHov2(p.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={pX} y={p.y} width={pw} height={p.h} rx="4" fill={h ? p.color : "#fff"} stroke={p.primary ? "#43a047" : h ? p.color : "#ddd"} strokeWidth={p.primary ? 2 : h ? 1.5 : 1} />{p.primary && !h && <line x1={pX} y1={p.y + p.h} x2={pX + pw} y2={p.y + p.h} stroke="#43a047" strokeWidth="3" />}<text x={pX + pw / 2} y={p.y + p.h / 2 - (p.sub ? 4 : 0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{p.label}</text>{p.sub && <text x={pX + pw / 2} y={p.y + p.h / 2 + 10} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{p.sub}</text>}</g>); })}
-
-      {outputs.map(o => { const h = hov2 === o.id; return (<g key={o.id} onMouseEnter={() => setHov2(o.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={oX} y={o.y} width={bw} height={bh} rx="4" fill={h ? o.color : "#fff"} stroke={h ? o.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={oX + bw / 2} y={o.y + 22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{o.label}</text><text x={oX + bw / 2} y={o.y + 37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{o.sub}</text></g>); })}
-
-      {decs.map(d => { const h = hov2 === d.id; const lines = d.label.split("\n"); return (<g key={d.id} onMouseEnter={() => setHov2(d.id)} onMouseLeave={() => setHov2(null)}><polygon points={`${d.x},${d.y - 22} ${d.x + 28},${d.y} ${d.x},${d.y + 22} ${d.x - 28},${d.y}`} fill={h ? d.color : "#fff"} stroke={d.color} strokeWidth={1.5} filter="url(#ds2)" />{lines.map((l, li) => <text key={li} x={d.x} y={d.y + (li - (lines.length - 1) / 2) * 11} fill={h ? "#fff" : d.color} fontSize="7.5" fontWeight="700" textAnchor="middle" fontFamily={sf}>{l}</text>)}</g>); })}
-
-      <g><line x1="580" y1="328" x2="605" y2="328" stroke="#c62828" strokeWidth="2" strokeDasharray="8,5" opacity="0.8" /><text x="612" y="331" fill="#888" fontSize="8" fontFamily={sf} fontWeight="500">Unresolved</text><line x1="695" y1="328" x2="720" y2="328" stroke="#546e7a" strokeWidth="1.5" opacity="0.5" /><text x="727" y="331" fill="#888" fontSize="8" fontFamily={sf} fontWeight="500">Confirmed</text></g>
+      <rect width="870" height="310" fill="#fafaf8" />
+      <g opacity="0.03">{Array.from({ length: 13 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="870" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 35 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="310" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
+      <text x={sX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">CONTENT SOURCES</text>
+      <text x={pX+pw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">PROCESSING</text>
+      <text x={oX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">OUTPUTS</text>
+      {flowLines.map((l, i) => (<g key={i}><line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="#43a047" strokeWidth={1.5} opacity={0.5} markerEnd="url(#fg)" /></g>))}
+      {sources.map(s => { const h = hov2 === s.id; return (<g key={s.id} onMouseEnter={() => setHov2(s.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={sX} y={s.y} width={bw} height={bh} rx="4" fill={h ? s.color : "#fff"} stroke={h ? s.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={sX+bw/2} y={s.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{s.label}</text><text x={sX+bw/2} y={s.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{s.sub}</text></g>); })}
+      {procs.map(p => { const h = hov2 === p.id; return (<g key={p.id} onMouseEnter={() => setHov2(p.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={pX} y={p.y} width={pw} height={p.h} rx="4" fill={h ? p.color : "#fff"} stroke={p.primary ? "#43a047" : h ? p.color : "#ddd"} strokeWidth={p.primary ? 2 : h ? 1.5 : 1} />{p.primary && !h && <line x1={pX} y1={p.y+p.h} x2={pX+pw} y2={p.y+p.h} stroke="#43a047" strokeWidth="3" />}<text x={pX+pw/2} y={p.y+p.h/2-(p.sub?4:0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{p.label}</text>{p.sub && <text x={pX+pw/2} y={p.y+p.h/2+10} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{p.sub}</text>}</g>); })}
+      {outputs.map(o => { const h = hov2 === o.id; return (<g key={o.id} onMouseEnter={() => setHov2(o.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={oX} y={o.y} width={bw} height={bh} rx="4" fill={h ? o.color : "#fff"} stroke={h ? o.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={oX+bw/2} y={o.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{o.label}</text><text x={oX+bw/2} y={o.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{o.sub}</text></g>); })}
+      <g><line x1="640" y1="298" x2="665" y2="298" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="672" y="301" fill="#888" fontSize="8" fontFamily={sf} fontWeight="500">Confirmed</text></g>
     </svg>
   );
 }
 
-const milestones = [
-  { week: "W1-2", label: "Requirements Workshop", desc: "Resolve blockers, define scope", color: "#c62828" },
-  { week: "W3-4", label: "Design & Architecture", desc: "Theme concept, data model, infra setup", color: "#c49000" },
-  { week: "W5-8", label: "Core Development", desc: "Theme, CPTs, profiles, practices, news", color: "#43a047" },
-  { week: "W9-10", label: "Content & Translation", desc: "Content entry, DE/EN translation, QA", color: "#c49000" },
-  { week: "W11-12", label: "Testing & Go-Live", desc: "UAT, performance, SEO audit, launch", color: "#43a047" },
-  { week: "W13+", label: "Phase 2: Integration", desc: "Sitecore API, ATS, advanced features", color: "#455a64" },
-];
+/* ── DASHBOARD COMPONENT ── */
 
 function Dashboard() {
-  const [tab, setTab] = useState("architecture");
-  const [sec, setSec] = useState(null);
+  const [tab, setTab] = useState("roadmap");
   const [exp, setExp] = useState(null);
   const [hov, setHov] = useState(null);
   const [hov2, setHov2] = useState(null);
   const [vis, setVis] = useState(false);
   useEffect(() => { requestAnimationFrame(() => setVis(true)); }, []);
 
-  const totalQ = sections.reduce((s, x) => s + x.questions.length, 0);
-  const totalB = sections.reduce((s, x) => s + x.features.filter(f => f.status === "blocker").length, 0);
-  const totalF = sections.reduce((s, x) => s + x.features.length, 0);
   const sf = "'DM Sans',sans-serif";
   const hf = "'Cormorant Garamond',serif";
 
   const tabs = [
-    { id: "architecture", label: "Architecture & Roadmap" },
-    { id: "features", label: "Features & Questions" },
+    { id: "roadmap",      label: "Roadmap & Milestones" },
+    { id: "scope",        label: "Scope of Work" },
+    { id: "architecture", label: "Architecture & Data" },
   ];
 
   return (
@@ -454,10 +391,9 @@ function Dashboard() {
         .fr{padding:14px 18px;margin-bottom:4px;border-radius:6px;cursor:pointer;background:#fff;border:1px solid transparent;transition:all .15s}
         .fr:hover{border-color:#e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,.03)}.fr.op{border-color:#43a047;background:#fafaf8}
         .seg-wrap{display:inline-flex;background:#eeede9;border-radius:10px;padding:4px;gap:4px}
-        .seg-btn{padding:12px 28px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;background:transparent;color:#888;border-radius:7px;transition:all .25s cubic-bezier(.4,0,.2,1);letter-spacing:.2px}
+        .seg-btn{padding:10px 22px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;background:transparent;color:#888;border-radius:7px;transition:all .25s cubic-bezier(.4,0,.2,1);letter-spacing:.2px}
         .seg-btn:hover{color:#555}
         .seg-btn.on{background:#1a1a1a;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-        .seg-badge{margin-left:8px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;transition:all .25s}
       `}</style>
 
       <div style={{ background: "#1a1a1a", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
@@ -466,174 +402,172 @@ function Dashboard() {
           <div style={{ width: 1, height: 24, background: "rgba(255,255,255,.15)" }} />
           <div>
             <div style={{ color: "rgba(255,255,255,.9)", fontSize: 13, fontWeight: 600, fontFamily: sf }}>Germany Microsite</div>
-            <div style={{ color: "rgba(255,255,255,.4)", fontSize: 10, fontFamily: sf, letterSpacing: .5 }}>Technical Requirements Analysis</div>
+            <div style={{ color: "rgba(255,255,255,.4)", fontSize: 10, fontFamily: sf, letterSpacing: .5 }}>Project Scope & Delivery Plan</div>
           </div>
         </div>
         <div style={{ color: "rgba(255,255,255,.3)", fontSize: 10, fontFamily: sf, letterSpacing: 1 }}>de.weil.com</div>
       </div>
-      <div style={{ height: 2, background: "linear-gradient(90deg, #43a047, #43a047 30%, #e0e0e0 30%)" }} />
+      <div style={{ height: 2, background: "#43a047" }} />
 
       <div style={{ maxWidth: 980, margin: "0 auto", padding: "36px 32px 60px" }}>
 
-        <div className={vis ? "fu d1" : ""} style={{ marginBottom: 32, padding: "28px 32px", background: "#fff", borderRadius: 10, border: "1px solid #f0f0f0", opacity: vis ? undefined : 0 }}>
-          <h2 style={{ fontFamily: hf, fontSize: 26, fontWeight: 600, color: "#1a1a1a", margin: "0 0 12px", letterSpacing: -.5 }}>Executive Summary</h2>
-          <p style={{ fontSize: 14, color: "#444", margin: "0 0 16px", lineHeight: 1.8, fontFamily: sf }}>
-            We have conducted a thorough analysis of your briefing for the Germany microsite (de.weil.com). The project is <strong>feasible by early May 2026</strong>, assuming a project start in the first week of March, using a phased approach. However, we have identified <strong style={{ color: "#c62828" }}>{totalB} blockers</strong> and <strong style={{ color: "#c49000" }}>{totalQ} open questions</strong> across {sections.length} modules that must be resolved before we can provide a binding cost estimate and roadmap.
-          </p>
-          <p style={{ fontSize: 14, color: "#444", margin: "0 0 16px", lineHeight: 1.8, fontFamily: sf }}>
-            The highest-risk areas are <strong>Careers/HR Hub</strong> (unknown ATS landscape), <strong>Team/People</strong> (Sitecore API dependency for CV mirroring), and <strong>GDPR compliance</strong> (applicant data handling with US-hosted infrastructure). These three areas alone can impact project scope by 40-60%.
-          </p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <div style={{ padding: "8px 16px", background: "#43a047", color: "#fff", borderRadius: 6, fontSize: 12, fontWeight: 600, fontFamily: sf }}>Next step: Requirements Workshop (60-90 min)</div>
-          </div>
-        </div>
-
-        <div className={vis ? "fu d2" : ""} style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 32, opacity: vis ? undefined : 0 }}>
-          {[{ label: "Features", value: totalF, color: "#43a047" }, { label: "Open Questions", value: totalQ, color: "#c49000" }, { label: "Blockers", value: totalB, color: "#c62828" }, { label: "Modules", value: sections.length, color: "#1a1a1a" }].map((k, i) => (
-            <div key={k.label} className={`fu d${i + 2}`} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
-              <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
-              <div style={{ fontSize: 11, color: "#999", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="fu d5" style={{ display: "flex", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
-          <span style={{ fontSize: 10, color: "#aaa", fontFamily: sf, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", lineHeight: "24px" }}>Effort Scale:</span>
-          {Object.entries(effortMap).map(([k, v]) => (
-            <span key={k} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <span style={{ padding: "2px 10px", borderRadius: 12, fontSize: 9, fontWeight: 700, color: v.color, background: `${v.color}0D`, fontFamily: sf }}>{k.toUpperCase()}</span>
-              <span style={{ color: "#999", fontSize: 10, fontFamily: sf }}>{v.label}</span>
-            </span>
-          ))}
-        </div>
-
-        <div className="fu d6" style={{ marginBottom: 36, display: "flex", justifyContent: "center" }}>
+        <div className="fu d1" style={{ marginBottom: 28, display: "flex", justifyContent: "center", opacity: vis ? undefined : 0 }}>
           <div className="seg-wrap">
             {tabs.map(t => (
               <button key={t.id} className={`seg-btn ${tab === t.id ? "on" : ""}`} onClick={() => setTab(t.id)}>
                 {t.label}
-                {t.id === "features" && <span className="seg-badge" style={{ background: tab === t.id ? "rgba(255,255,255,.15)" : "rgba(0,0,0,.06)", color: tab === t.id ? "#fff" : "#999" }}>{totalQ}</span>}
               </button>
             ))}
           </div>
         </div>
 
-        {tab === "architecture" && (
+        {/* ── TAB 1: ROADMAP ── */}
+        {tab === "roadmap" && (
           <div className="fu d1">
-            <div style={{ marginBottom: 40 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>System Landscape</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#c62828" }}>Red dashed</span> = unresolved integrations.</p>
-              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><SystemDiagram hov={hov} setHov={setHov} /></div>
+            <div style={{ marginBottom: 32, padding: "28px 32px", background: "#fff", borderRadius: 10, border: "1px solid #f0f0f0" }}>
+              <h2 style={{ fontFamily: hf, fontSize: 26, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>de.weil.com</h2>
+              <p style={{ fontSize: 14, color: "#666", fontFamily: sf, margin: "0 0 12px", lineHeight: 1.6 }}>WordPress Microsite, Weil Germany (Frankfurt)</p>
+              <p style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: "0 0 20px" }}>Go-Live: Mai 2026 &nbsp;|&nbsp; 9 Wochen ab Kickoff &nbsp;|&nbsp; 36\u201340 PT</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: 13, color: "#555", fontFamily: sf, lineHeight: 1.7 }}>
+                <div><strong>Workday:</strong> externes Portal, wir betten ein (kein Build).</div>
+                <div><strong>CV Mirroring:</strong> wir stellen REST API bereit, US-Seite holt Daten.</div>
+                <div><strong>News:</strong> RSS-Import von weil.com. Keine Sitecore-Abh\u00e4ngigkeit.</div>
+              </div>
             </div>
-            <div style={{ marginBottom: 40 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Content & Data Flow</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication. Diamonds = open decisions.</p>
-              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><ContentFlowDiagram hov2={hov2} setHov2={setHov2} /></div>
+
+            <div className="fu d2" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16, marginBottom: 32 }}>
+              {[{ label: "Modules", value: 8, color: "#1a1a1a" }, { label: "Timeline", value: "9 Wochen", color: "#43a047" }].map(k => (
+                <div key={k.label} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
+                  <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
+                  <div style={{ fontSize: 11, color: "#999", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
+                </div>
+              ))}
             </div>
-            <div style={{ marginBottom: 32 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Preliminary Roadmap</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Indicative timeline assuming blocker resolution within 2 weeks. Subject to change after workshop.</p>
+
+            <div className="fu d3" style={{ marginBottom: 24 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Roadmap</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>9 Wochen ab Kickoff. Parallele Arbeitspakete erm\u00f6glichen die kompakte Timeline.</p>
               <div style={{ display: "flex", gap: 0, overflow: "hidden", borderRadius: 8, border: "1px solid #f0f0f0" }}>
-                {milestones.map((m, i) => (
-                  <div key={i} style={{ flex: 1, padding: "18px 16px", background: "#fff", borderRight: i < milestones.length - 1 ? "1px solid #f0f0f0" : "none", position: "relative" }}>
+                {roadmap.map((m, i) => (
+                  <div key={i} style={{ flex: 1, padding: "18px 14px", background: "#fff", borderRight: i < roadmap.length - 1 ? "1px solid #f0f0f0" : "none", position: "relative" }}>
                     <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: m.color }} />
                     <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 6 }}>{m.week}</div>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 4, lineHeight: 1.3 }}>{m.label}</div>
-                    <div style={{ fontSize: 10, color: "#999", fontFamily: sf, lineHeight: 1.5 }}>{m.desc}</div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 4, lineHeight: 1.3 }}>{m.label}</div>
+                    <div style={{ fontSize: 9.5, color: "#999", fontFamily: sf, lineHeight: 1.5 }}>{m.desc}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-              {[
-                { n: "01", title: "Phase 1 - Standalone", sub: "Target: Early May 2026", desc: "WordPress without external integrations. All content manual. Full DE team autonomy. Zero dependency risk.", c: "#43a047" },
-                { n: "02", title: "Phase 2 - Integration", sub: "From May 2026", desc: "Sitecore CV sync, ATS integration (if applicable). Requires resolution of open questions with US team.", c: "#c49000" }
-              ].map(p => (
-                <div key={p.n} style={{ background: "#fff", borderRadius: 8, padding: "24px 28px", border: "1px solid #f0f0f0", position: "relative" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: p.c }} />
-                  <div style={{ fontSize: 10, color: "#ccc", fontFamily: sf, fontWeight: 700, letterSpacing: 2, marginBottom: 8 }}>{p.n}</div>
-                  <div style={{ fontSize: 16, fontWeight: 600, color: "#1a1a1a", fontFamily: hf, marginBottom: 2 }}>{p.title}</div>
-                  <div style={{ fontSize: 10, color: p.c, fontFamily: sf, fontWeight: 600, letterSpacing: .5, marginBottom: 10 }}>{p.sub}</div>
-                  <div style={{ fontSize: 12, color: "#777", lineHeight: 1.7, fontFamily: sf }}>{p.desc}</div>
+
+            <div className="fu d4" style={{ padding: "16px 20px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: 0 }}>Content-Lieferung ist auf dem kritischen Pfad. Verz\u00f6gerungen verschieben den Go-Live 1:1.</p>
+            </div>
+          </div>
+        )}
+
+        {/* ── TAB 2: SCOPE OF WORK ── */}
+        {tab === "scope" && (
+          <div className="fu d1">
+            <div style={{ marginBottom: 32 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Sitemap</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>8 Templates | max. 2 Klicks bis zu jedem Inhalt</p>
+              <div style={{ background: "#fff", borderRadius: 8, padding: "20px 24px", border: "1px solid #f0f0f0" }}>
+                {sitemapData.map((s, i) => (
+                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "baseline", padding: "6px 0", marginLeft: s.depth * 28, borderBottom: i < sitemapData.length - 1 ? "1px solid #f8f8f6" : "none" }}>
+                    <code style={{ fontSize: 12, color: "#43a047", fontWeight: 600, minWidth: s.depth ? 140 : 170, flexShrink: 0 }}>{s.path}</code>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{s.label}</span>
+                    {s.desc && <span style={{ fontSize: 11, color: "#999", fontFamily: sf }}>{s.desc}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: 24 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>Modules</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 16px" }}>{modules.length} Module. Klicken zum Aufklappen.</p>
+            </div>
+            {modules.map((m, mi) => {
+              const isO = exp === m.id;
+              const pr = priorityMap[m.priority];
+              return (
+                <div key={m.id} className={`fr ${isO ? "op" : ""}`} onClick={() => setExp(isO ? null : m.id)}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                    <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#f5f5f5", color: "#999", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{mi + 1}</span>
+                    <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{m.title}</span>
+                    <span style={{ padding: "3px 12px", borderRadius: 20, fontSize: 9, fontWeight: 700, color: pr.color, background: pr.bg, fontFamily: sf, letterSpacing: .5 }}>{m.priority.toUpperCase()}</span>
+                  </div>
+                  {isO && (
+                    <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #f0f0f0" }}>
+                      {m.items.map((item, ii) => (
+                        <div key={ii} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                          <span style={{ color: "#43a047", fontSize: 10, marginTop: 4, flexShrink: 0 }}>{"\u25CF"}</span>
+                          <span style={{ fontSize: 12, color: "#555", lineHeight: 1.7, fontFamily: sf }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div style={{ marginTop: 28, padding: "20px 24px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #9e9e9e" }}>
+              <div style={{ fontSize: 10, fontWeight: 700, color: "#9e9e9e", marginBottom: 12, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Nicht im Scope</div>
+              {notInScope.map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                  <span style={{ color: "#ccc", fontSize: 12, flexShrink: 0 }}>{"\u2014"}</span>
+                  <span style={{ fontSize: 12, color: "#888", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {tab === "features" && (
+        {/* ── TAB 3: ARCHITECTURE & DATA ── */}
+        {tab === "architecture" && (
           <div className="fu d1">
-            <div style={{ marginBottom: 24 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>Features & Open Questions</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: 0 }}>{totalF} features, {totalQ} open questions, {totalB} blockers. Sorted by risk level.</p>
+            <div style={{ marginBottom: 40 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>System Landscape</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#43a047" }}>Green</span> = confirmed, <span style={{ color: "#9e9e9e" }}>grey dashed</span> = external / manual.</p>
+              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><SystemDiagram hov={hov} setHov={setHov} /></div>
             </div>
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 24 }}>
-              <button onClick={() => setSec(null)} style={{ padding: "7px 16px", border: "1px solid #e0e0e0", borderRadius: 20, cursor: "pointer", fontSize: 11, fontWeight: 600, fontFamily: sf, background: !sec ? "#1a1a1a" : "#fff", color: !sec ? "#fff" : "#888", transition: "all .15s" }}>All</button>
-              {sections.map(s => {
-                const bl = s.features.filter(f => f.status === "blocker").length;
-                return (
-                  <button key={s.id} onClick={() => setSec(sec === s.id ? null : s.id)} style={{ padding: "7px 16px", border: "1px solid #e0e0e0", borderRadius: 20, cursor: "pointer", fontSize: 11, fontWeight: 600, fontFamily: sf, background: sec === s.id ? "#43a047" : "#fff", color: sec === s.id ? "#fff" : "#888", position: "relative", transition: "all .15s" }}>
-                    {s.title}
-                    {bl > 0 && <span style={{ position: "absolute", top: -4, right: -4, width: 15, height: 15, borderRadius: "50%", background: "#c62828", color: "#fff", fontSize: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>{bl}</span>}
-                  </button>
-                );
-              })}
+            <div style={{ marginBottom: 40 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Content & Data Flow</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication.</p>
+              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><ContentFlowDiagram hov2={hov2} setHov2={setHov2} /></div>
             </div>
-            {sections.filter(s => !sec || s.id === sec).map(s => {
-              const sorted = [...s.features].sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
-              return (
-                <div key={s.id} style={{ marginBottom: 28 }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 10, paddingLeft: 2 }}>
-                    <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600, color: "#1a1a1a", fontFamily: hf }}>{s.title}</h3>
-                    <span style={{ fontSize: 10, color: "#bbb", fontFamily: sf }}>{s.features.length} features</span>
-                  </div>
-                  {sorted.map((f, fi) => {
-                    const st = statusMap[f.status];
-                    const fKey = `${s.id}-${f.name}`;
-                    const isO = exp === fKey;
-                    return (
-                      <div key={fi} className={`fr ${isO ? "op" : ""}`} onClick={() => setExp(isO ? null : fKey)}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                          <span style={{ width: 26, height: 26, borderRadius: "50%", background: st.bg, color: st.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{st.icon}</span>
-                          <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{f.name}</span>
-                          <span style={{ padding: "3px 12px", borderRadius: 20, fontSize: 9, fontWeight: 700, color: effortMap[f.effort].color, background: `${effortMap[f.effort].color}0D`, fontFamily: sf, letterSpacing: .5 }}>{f.effort.toUpperCase()}</span>
-                        </div>
-                        {isO && (
-                          <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#666", lineHeight: 1.8, fontFamily: sf }}>
-                            <span style={{ fontWeight: 700, color: st.color, fontSize: 10, textTransform: "uppercase", letterSpacing: .8 }}>{st.label}</span><br />{f.note}
-                            {f.rec && (
-                              <div style={{ marginTop: 10, padding: "10px 14px", background: "rgba(67,160,71,0.05)", borderRadius: 6, borderLeft: "3px solid #43a047" }}>
-                                <span style={{ fontWeight: 700, color: "#43a047", fontSize: 10, textTransform: "uppercase", letterSpacing: .8 }}>Our Recommendation</span><br />
-                                <span style={{ color: "#444" }}>{f.rec}</span>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                  {s.questions.length > 0 && (
-                    <div style={{ marginTop: 12, padding: "16px 20px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
-                      <div style={{ fontSize: 10, fontWeight: 700, color: "#c49000", marginBottom: 10, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Open Questions</div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        {s.questions.map((q, qi) => (
-                          <div key={qi} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                            <span style={{ minWidth: 20, height: 20, borderRadius: "50%", background: "#f5f5f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700, color: "#aaa", fontFamily: sf, flexShrink: 0, marginTop: 2 }}>{qi + 1}</span>
-                            <span style={{ fontSize: 12, color: "#555", lineHeight: 1.7, fontFamily: sf }}>{q}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+            <div style={{ marginBottom: 32 }}>
+              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Data Model</h2>
+              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>WordPress Custom Post Types and Taxonomies.</p>
+              <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", overflow: "hidden" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, fontFamily: sf }}>
+                  <thead>
+                    <tr style={{ background: "#fafaf8", borderBottom: "2px solid #f0f0f0" }}>
+                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>CPT</th>
+                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Purpose</th>
+                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Relations</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {dataModel.map(row => (
+                      <tr key={row.cpt} style={{ borderBottom: "1px solid #f0f0f0" }}>
+                        <td style={{ padding: "12px 20px" }}><code style={{ fontSize: 12, color: "#43a047", fontWeight: 600 }}>{row.cpt}</code></td>
+                        <td style={{ padding: "12px 20px", color: "#444" }}>{row.purpose}</td>
+                        <td style={{ padding: "12px 20px", color: "#888", fontSize: 12 }}>{row.relations}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div style={{ padding: "14px 20px", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888", fontFamily: sf }}>
+                  <strong style={{ color: "#666" }}>Taxonomies:</strong> practice-area (7), title (3), office (1+)
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
         )}
 
         <div style={{ marginTop: 48, paddingTop: 20, borderTop: "1px solid #eee", display: "flex", justifyContent: "space-between" }}>
-          <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Kamanin IT Solutions - Weil, Gotshal & Manges LLP</span>
+          <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Kamanin IT Solutions \u2014 Weil, Gotshal & Manges LLP</span>
           <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Confidential</span>
         </div>
       </div>
