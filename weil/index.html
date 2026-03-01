@@ -543,29 +543,47 @@
                       <div key={k.label} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
                         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
                         <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
-                        <div style={{ fontSize: 11, color: "#999", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
-                        {k.sub && <div style={{ fontSize: 10, color: "#bbb", marginTop: 6, fontFamily: sf, lineHeight: 1.4 }}>{k.sub}</div>}
+                        <div style={{ fontSize: 12, color: "#666", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
+                        {k.sub && <div style={{ fontSize: 11, color: "#888", marginTop: 6, fontFamily: sf, lineHeight: 1.4 }}>{k.sub}</div>}
                       </div>
                     ))}
                   </div>
 
                   <div className="fu d3" style={{ marginBottom: 24 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Roadmap</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>9 weeks from kickoff. Parallel work packages enable the compact timeline.</p>
-                    <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "repeat(3, 1fr)", gap: mob ? 10 : 12 }}>
-                      {roadmap.map((m, i) => (
-                        <div key={i} style={{ padding: mob ? "16px 14px" : "20px 18px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
-                          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: m.color }} />
-                          <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 6 }}>{m.week}</div>
-                          <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 6, lineHeight: 1.3 }}>{m.label}</div>
-                          <div style={{ fontSize: 11, color: "#999", fontFamily: sf, lineHeight: 1.6 }}>{m.desc}</div>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 24px" }}>9 weeks from kickoff. Parallel work packages enable the compact timeline.</p>
+
+                    {mob ? (
+                      <div style={{ position: "relative", paddingLeft: 20 }}>
+                        <div style={{ position: "absolute", left: 5, top: 0, bottom: 0, width: 2, background: "#e8e8e6" }} />
+                        {roadmap.map((m, i) => (
+                          <div key={i} style={{ position: "relative", marginBottom: i < roadmap.length - 1 ? 24 : 0 }}>
+                            <div style={{ position: "absolute", left: -20, top: 2, width: 12, height: 12, borderRadius: "50%", background: m.color, border: "2px solid #fafaf8" }} />
+                            <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 4 }}>{m.week}</div>
+                            <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 4, lineHeight: 1.3 }}>{m.label}</div>
+                            <div style={{ fontSize: 12, color: "#555", fontFamily: sf, lineHeight: 1.5 }}>{m.desc}</div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ position: "relative" }}>
+                        <div style={{ position: "absolute", top: 6, left: 0, right: 0, height: 2, background: "#e8e8e6" }} />
+                        <div style={{ display: "flex", gap: 0, position: "relative" }}>
+                          {roadmap.map((m, i) => (
+                            <div key={i} style={{ flex: 1, paddingTop: 24, position: "relative" }}>
+                              <div style={{ position: "absolute", top: 0, left: 0, width: 14, height: 14, borderRadius: "50%", background: m.color, border: "3px solid #fafaf8", boxShadow: "0 0 0 1px " + m.color }} />
+                              <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 6 }}>{m.week}</div>
+                              <div style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 4, lineHeight: 1.3, paddingRight: 12 }}>{m.label}</div>
+                              <div style={{ fontSize: 12, color: "#555", fontFamily: sf, lineHeight: 1.5, paddingRight: 12 }}>{m.desc}</div>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="fu d4" style={{ padding: "16px 20px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: 0 }}>Content/Feedback delivery is on the critical path. Delays shift the go-live date 1:1.</p>
+                  <div className="fu d4" style={{ padding: "16px 20px", background: "#fafaf8", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: 0 }}>Content and feedback delivery are on the critical path. Delays shift the go-live date 1:1.</p>
                   </div>
                 </div>
               )}
@@ -575,13 +593,13 @@
                 <div className="fu d1">
                   <div style={{ marginBottom: 32 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Sitemap</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>8 Templates | max. 2 clicks to any content</p>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 20px" }}>8 Templates | max. 2 clicks to any content</p>
                     <div style={{ background: "#fff", borderRadius: 8, padding: mob ? "14px 12px" : "20px 24px", border: "1px solid #f0f0f0" }}>
                       {sitemapData.map((s, i) => (
                         <div key={i} style={{ display: mob ? "block" : "flex", gap: 12, alignItems: "baseline", padding: mob ? "8px 0" : "6px 0", marginLeft: s.depth * (mob ? 16 : 28), borderBottom: i < sitemapData.length - 1 ? "1px solid #f8f8f6" : "none" }}>
                           <code style={{ fontSize: mob ? 11 : 12, color: "#43a047", fontWeight: 600, minWidth: mob ? "auto" : (s.depth ? 140 : 170), flexShrink: 0, display: mob ? "block" : "inline", marginBottom: mob ? 2 : 0 }}>{s.path}</code>
                           <span style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{s.label}</span>
-                          {s.desc && <span style={{ fontSize: 11, color: "#999", fontFamily: sf, marginLeft: mob ? 4 : 0 }}>{s.desc}</span>}
+                          {s.desc && <span style={{ fontSize: 12, color: "#555", fontFamily: sf, marginLeft: mob ? 4 : 0 }}>{s.desc}</span>}
                         </div>
                       ))}
                     </div>
@@ -589,7 +607,7 @@
 
                   <div style={{ marginBottom: 24 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>Modules</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 16px" }}>{modules.length} modules. Click to expand.</p>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 16px" }}>{modules.length} modules. Click to expand.</p>
                   </div>
                   {modules.map((m, mi) => {
                     const isO = exp === m.id;
@@ -597,7 +615,7 @@
                     return (
                       <div key={m.id} className={`fr ${isO ? "op" : ""}`} onClick={() => setExp(isO ? null : m.id)}>
                         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                          <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#f5f5f5", color: "#999", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{mi + 1}</span>
+                          <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#f5f5f5", color: "#666", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{mi + 1}</span>
                           <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{m.title}</span>
                           <span style={{ padding: "3px 12px", borderRadius: 20, fontSize: 9, fontWeight: 700, color: pr.color, background: pr.bg, fontFamily: sf, letterSpacing: .5 }}>{m.priority.toUpperCase()}</span>
                         </div>
@@ -606,7 +624,7 @@
                             {m.items.map((item, ii) => (
                               <div key={ii} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
                                 <span style={{ color: "#43a047", fontSize: 10, marginTop: 4, flexShrink: 0 }}>{"●"}</span>
-                                <span style={{ fontSize: 12, color: "#555", lineHeight: 1.7, fontFamily: sf }}>{item}</span>
+                                <span style={{ fontSize: 13, color: "#333", lineHeight: 1.7, fontFamily: sf }}>{item}</span>
                               </div>
                             ))}
                           </div>
@@ -616,13 +634,47 @@
                   })}
 
                   <div style={{ marginTop: 28, padding: "20px 24px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #9e9e9e" }}>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: "#9e9e9e", marginBottom: 12, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Not in Scope</div>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: "#777", marginBottom: 12, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Not in Scope</div>
                     {notInScope.map((item, i) => (
                       <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
-                        <span style={{ color: "#ccc", fontSize: 12, flexShrink: 0 }}>{"—"}</span>
-                        <span style={{ fontSize: 12, color: "#888", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
+                        <span style={{ color: "#bbb", fontSize: 14, flexShrink: 0 }}>{"—"}</span>
+                        <span style={{ fontSize: 14, color: "#1a1a1a", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
                       </div>
                     ))}
+                  </div>
+
+                  <div style={{ marginTop: 36, paddingTop: 28, borderTop: "1px solid #eee" }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 20px", letterSpacing: -.5 }}>Assumptions & Dependencies</h2>
+
+                    <div style={{ marginBottom: 20 }}>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: "#888", marginBottom: 10, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Assumptions</div>
+                      {[
+                        "Content (bios, practice texts, legal pages) is delivered in approved final version",
+                        "REST API requirements are defined and frozen before development starts",
+                        "RSS feed structure from weil.com remains stable during implementation",
+                        "Workday embed requires no additional customization",
+                        "Final DE/EN content approval lies with Weil Germany"
+                      ].map((item, i) => (
+                        <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                          <span style={{ color: "#bbb", fontSize: 12, marginTop: 3, flexShrink: 0 }}>{"●"}</span>
+                          <span style={{ fontSize: 14, color: "#1a1a1a", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: "#888", marginBottom: 10, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Dependencies</div>
+                      {[
+                        "Hosting access (staging + production) provided before development phase",
+                        "Legal texts (Impressum / Datenschutz) approved before go-live",
+                        "US team consumes REST API without structural change requests after delivery"
+                      ].map((item, i) => (
+                        <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                          <span style={{ color: "#bbb", fontSize: 12, marginTop: 3, flexShrink: 0 }}>{"●"}</span>
+                          <span style={{ fontSize: 14, color: "#1a1a1a", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -632,24 +684,24 @@
                 <div className="fu d1">
                   <div style={{ marginBottom: 40 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>System Landscape</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#43a047" }}>Green</span> = confirmed, <span style={{ color: "#9e9e9e" }}>grey dashed</span> = external / manual.</p>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#43a047" }}>Green</span> = confirmed, <span style={{ color: "#9e9e9e" }}>grey dashed</span> = external / manual.</p>
                     <div className={mob ? "svg-scroll" : ""} style={{ background: "#fff", borderRadius: 8, padding: mob ? 12 : 20, border: "1px solid #f0f0f0" }}><div style={{ minWidth: mob ? 700 : "auto" }}><SystemDiagram hov={hov} setHov={setHov} /></div></div>
                   </div>
                   <div style={{ marginBottom: 40 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Content & Data Flow</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication.</p>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication.</p>
                     <div className={mob ? "svg-scroll" : ""} style={{ background: "#fff", borderRadius: 8, padding: mob ? 12 : 20, border: "1px solid #f0f0f0" }}><div style={{ minWidth: mob ? 600 : "auto" }}><ContentFlowDiagram hov2={hov2} setHov2={setHov2} /></div></div>
                   </div>
                   <div style={{ marginBottom: 32 }}>
                     <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Data Model</h2>
-                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>WordPress Custom Post Types and Taxonomies.</p>
+                    <p style={{ fontSize: 14, color: "#444", fontFamily: sf, margin: "0 0 20px" }}>WordPress Custom Post Types and Taxonomies.</p>
                     <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", overflowX: mob ? "auto" : "hidden", WebkitOverflowScrolling: "touch" }}>
                       <table style={{ width: "100%", minWidth: mob ? 480 : "auto", borderCollapse: "collapse", fontSize: mob ? 12 : 13, fontFamily: sf }}>
                         <thead>
                           <tr style={{ background: "#fafaf8", borderBottom: "2px solid #f0f0f0" }}>
-                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>CPT</th>
-                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Purpose</th>
-                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Relations</th>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 11, color: "#777", letterSpacing: .8, textTransform: "uppercase" }}>CPT</th>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 11, color: "#777", letterSpacing: .8, textTransform: "uppercase" }}>Purpose</th>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 11, color: "#777", letterSpacing: .8, textTransform: "uppercase" }}>Relations</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -657,13 +709,13 @@
                             <tr key={row.cpt} style={{ borderBottom: "1px solid #f0f0f0" }}>
                               <td style={{ padding: "12px 20px" }}><code style={{ fontSize: 12, color: "#43a047", fontWeight: 600 }}>{row.cpt}</code></td>
                               <td style={{ padding: "12px 20px", color: "#444" }}>{row.purpose}</td>
-                              <td style={{ padding: "12px 20px", color: "#888", fontSize: 12 }}>{row.relations}</td>
+                              <td style={{ padding: "12px 20px", color: "#444", fontSize: 13 }}>{row.relations}</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
-                      <div style={{ padding: "14px 20px", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888", fontFamily: sf }}>
-                        <strong style={{ color: "#666" }}>Taxonomies:</strong> practice-area (7), title (3), office (2)
+                      <div style={{ padding: "14px 20px", borderTop: "1px solid #f0f0f0", fontSize: 13, color: "#444", fontFamily: sf }}>
+                        <strong style={{ color: "#1a1a1a" }}>Taxonomies:</strong> practice-area (7), title (3), office (2)
                       </div>
                     </div>
                   </div>
