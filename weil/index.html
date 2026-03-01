@@ -1,94 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weil Germany Microsite - Project Scope & Delivery Plan</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'DM Sans', sans-serif; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+      }
 
-        /* LOGIN SCREEN */
-        #login-screen {
-            position: fixed; inset: 0; z-index: 9999;
-            background: #281878;
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        #login-screen.hidden {
-            opacity: 0; pointer-events: none; transform: scale(1.02);
-        }
-        .login-card {
-            width: 100%; max-width: 380px; padding: 48px 40px;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .login-logo {
-            width: 64px; height: auto; margin-bottom: 40px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-        }
-        .login-field {
-            width: 100%; margin-bottom: 16px;
-        }
-        .login-field input {
-            width: 100%; padding: 14px 18px;
-            background: rgba(255,255,255,0.18);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif;
-            outline: none; transition: all 0.2s;
-        }
-        .login-field input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-        .login-field input:focus {
-            border-color: rgba(255,255,255,0.55);
-            background: rgba(255,255,255,0.25);
-        }
-        .login-btn {
-            width: 100%; padding: 14px;
-            background: #fff; color: #281878;
-            border: none; border-radius: 8px;
-            font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-            cursor: pointer; transition: all 0.2s;
-            margin-top: 8px;
-        }
-        .login-btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
-        .login-btn:active { transform: translateY(0); }
-        .login-error {
-            color: #ff6b6b; font-size: 12px; margin-top: 16px;
-            opacity: 0; transition: opacity 0.2s;
-            text-align: center;
-        }
-        .login-error.show { opacity: 1; }
+      /* LOGIN SCREEN */
+      #login-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #281878;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      #login-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(1.02);
+      }
+      .login-card {
+        width: 100%;
+        max-width: 380px;
+        padding: 48px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .login-logo {
+        width: 64px;
+        height: auto;
+        margin-bottom: 40px;
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+      }
+      .login-field {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+      .login-field input {
+        width: 100%;
+        padding: 14px 18px;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        font-family: "DM Sans", sans-serif;
+        outline: none;
+        transition: all 0.2s;
+      }
+      .login-field input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .login-field input:focus {
+        border-color: rgba(255, 255, 255, 0.55);
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        background: #fff;
+        color: #281878;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 8px;
+      }
+      .login-btn:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-1px);
+      }
+      .login-btn:active {
+        transform: translateY(0);
+      }
+      .login-error {
+        color: #ff6b6b;
+        font-size: 12px;
+        margin-top: 16px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        text-align: center;
+      }
+      .login-error.show {
+        opacity: 1;
+      }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
         }
-        .shake { animation: shake 0.4s ease; }
+        20%,
+        60% {
+          transform: translateX(-8px);
+        }
+        40%,
+        80% {
+          transform: translateX(8px);
+        }
+      }
+      .shake {
+        animation: shake 0.4s ease;
+      }
 
-        /* DASHBOARD */
-        #dashboard-root { display: none; }
-        #dashboard-root.show { display: block; }
+      /* DASHBOARD */
+      #dashboard-root {
+        display: none;
+      }
+      #dashboard-root.show {
+        display: block;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- LOGIN SCREEN -->
     <div id="login-screen">
-        <form class="login-card" id="login-form" autocomplete="off">
-            <img src="../Icon_transparent_white.svg" alt="Kamanin" class="login-logo" />
-            <div class="login-field">
-                <input type="text" id="login-user" placeholder="Login" autocomplete="off" spellcheck="false" />
-            </div>
-            <div class="login-field">
-                <input type="password" id="login-pass" placeholder="Password" autocomplete="off" />
-            </div>
-            <button type="submit" class="login-btn">Sign In</button>
-            <div class="login-error" id="login-error">Invalid login or password</div>
-        </form>
+      <form class="login-card" id="login-form" autocomplete="off">
+        <img
+          src="../Icon_transparent_white.svg"
+          alt="Kamanin"
+          class="login-logo"
+        />
+        <div class="login-field">
+          <input
+            type="text"
+            id="login-user"
+            placeholder="Login"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <div class="login-field">
+          <input
+            type="password"
+            id="login-pass"
+            placeholder="Password"
+            autocomplete="off"
+          />
+        </div>
+        <button type="submit" class="login-btn">Sign In</button>
+        <div class="login-error" id="login-error">
+          Invalid login or password
+        </div>
+      </form>
     </div>
 
     <!-- DASHBOARD (hidden until auth) -->
@@ -96,487 +175,512 @@
 
     <!-- AUTH LOGIC (vanilla JS, runs before React) -->
     <script>
-        const HASH = '380a562ce44d8341bd995615c07b56bceb6688dce2e78f6921c251e02a71c775';
+      const HASH =
+        "380a562ce44d8341bd995615c07b56bceb6688dce2e78f6921c251e02a71c775";
 
-        async function sha256(str) {
-            const buf = new TextEncoder().encode(str);
-            const hash = await crypto.subtle.digest('SHA-256', buf);
-            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
+      async function sha256(str) {
+        const buf = new TextEncoder().encode(str);
+        const hash = await crypto.subtle.digest("SHA-256", buf);
+        return Array.from(new Uint8Array(hash))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      }
 
-        function showDashboard() {
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('dashboard-root').classList.add('show');
-            loadReact();
-        }
+      function showDashboard() {
+        document.getElementById("login-screen").classList.add("hidden");
+        document.getElementById("dashboard-root").classList.add("show");
+        loadReact();
+      }
 
-        // Check existing session
-        if (sessionStorage.getItem('weil-auth') === 'true') {
+      // Check existing session
+      if (sessionStorage.getItem("weil-auth") === "true") {
+        showDashboard();
+      }
+
+      // Login form handler
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const user = document.getElementById("login-user").value;
+          const pass = document.getElementById("login-pass").value;
+          const hash = await sha256(user + ":" + pass);
+
+          if (hash === HASH) {
+            sessionStorage.setItem("weil-auth", "true");
             showDashboard();
-        }
-
-        // Login form handler
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const user = document.getElementById('login-user').value;
-            const pass = document.getElementById('login-pass').value;
-            const hash = await sha256(user + ':' + pass);
-
-            if (hash === HASH) {
-                sessionStorage.setItem('weil-auth', 'true');
-                showDashboard();
-            } else {
-                const card = document.querySelector('.login-card');
-                const err = document.getElementById('login-error');
-                err.classList.add('show');
-                card.classList.add('shake');
-                setTimeout(() => card.classList.remove('shake'), 400);
-            }
+          } else {
+            const card = document.querySelector(".login-card");
+            const err = document.getElementById("login-error");
+            err.classList.add("show");
+            card.classList.add("shake");
+            setTimeout(() => card.classList.remove("shake"), 400);
+          }
         });
 
-        // Dynamically load React + Babel sequentially, then render dashboard
-        function loadReact() {
-            const scripts = [
-                'https://unpkg.com/react@18/umd/react.production.min.js',
-                'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
-                'https://unpkg.com/@babel/standalone/babel.min.js'
-            ];
-            function loadNext(i) {
-                if (i >= scripts.length) {
-                    const code = document.getElementById('dashboard-jsx').textContent;
-                    const transformed = Babel.transform(code, { presets: ['react'] }).code;
-                    const s = document.createElement('script');
-                    s.textContent = transformed;
-                    document.body.appendChild(s);
-                    return;
-                }
-                const s = document.createElement('script');
-                s.src = scripts[i];
-                s.crossOrigin = 'anonymous';
-                s.onload = () => loadNext(i + 1);
-                document.head.appendChild(s);
-            }
-            loadNext(0);
+      // Dynamically load React + Babel sequentially, then render dashboard
+      function loadReact() {
+        const scripts = [
+          "https://unpkg.com/react@18/umd/react.production.min.js",
+          "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
+          "https://unpkg.com/@babel/standalone/babel.min.js",
+        ];
+        function loadNext(i) {
+          if (i >= scripts.length) {
+            const code = document.getElementById("dashboard-jsx").textContent;
+            const transformed = Babel.transform(code, {
+              presets: ["react"],
+            }).code;
+            const s = document.createElement("script");
+            s.textContent = transformed;
+            document.body.appendChild(s);
+            return;
+          }
+          const s = document.createElement("script");
+          s.src = scripts[i];
+          s.crossOrigin = "anonymous";
+          s.onload = () => loadNext(i + 1);
+          document.head.appendChild(s);
         }
+        loadNext(0);
+      }
     </script>
 
     <!-- DASHBOARD JSX v2 -->
     <script id="dashboard-jsx" type="text/plain">
-const { useState, useEffect } = React;
+      const { useState, useEffect, useCallback } = React;
 
-/* ── DATA ── */
+      function useIsMobile(bp = 640) {
+        const [m, setM] = useState(window.innerWidth <= bp);
+        useEffect(() => {
+          const h = () => setM(window.innerWidth <= bp);
+          window.addEventListener("resize", h);
+          return () => window.removeEventListener("resize", h);
+        }, [bp]);
+        return m;
+      }
 
-const modules = [
-  { id: "team", title: "TEAM / PEOPLE", priority: "High", items: [
-    "50\u201360 Anwaltsprofile (Voll: Partner/Counsel, Kompakt: Junior)",
-    "Felder: Name, Foto, Titel, Practice Areas, Focus, Education, Background, Track Record, Publications, Languages, V-Card, Video (Partner), JUVE/Chambers",
-    "Suche + Filter (Practice Area, Titel, Name)",
-    "2-Click GDPR Video-Embed (Vimeo/YouTube)",
-    "REST API Endpunkt f\u00fcr CV-Daten (US-Seite pull)"
-  ]},
-  { id: "home", title: "HOME", priority: "Medium", items: [
-    "Long-Scroll: Hero, Kurzvorstellung, Practice Areas (7 Tabs \u2192 /expertise/), Featured Team (4\u20136 Partner \u2192 /team/), Deal Highlights (dynamisch, CPT), News Teaser, Karriere Teaser, Kontakt (Footer-Bereich)",
-    "Globale Suche (Anw\u00e4lte, News, Deals)"
-  ]},
-  { id: "expertise", title: "EXPERTISE", priority: "Medium", items: [
-    "7 Practice Areas, je eine Seite (ein Template)",
-    "Automatisch bef\u00fcllt: verkn\u00fcpfte Anw\u00e4lte, Mandate/Deals, Beitr\u00e4ge",
-    "Vom Kunden: Beschreibungstext pro Practice Area"
-  ]},
-  { id: "news", title: "NEWS & INSIGHTS", priority: "Medium", items: [
-    "Ein CPT, lokaler Content + RSS-Import (weil.com, Germany-Tag)",
-    "Archiv mit Filter und Suche"
-  ]},
-  { id: "careers", title: "CAREERS", priority: "Low", items: [
-    "Workday Embed/Link (kein eigener Build)",
-    "Testimonials, Benefits (statisch)"
-  ]},
-  { id: "i18n", title: "MULTILINGUAL", priority: "Medium", items: [
-    "WPML + DeepL, DE/EN Toggle, hreflang"
-  ]},
-  { id: "tech", title: "TECHNICAL / COMPLIANCE", priority: "Medium", items: [
-    "Cookie Consent (wasserdicht, DE/EU)",
-    "2-Click Video Facade, Impressum, Datenschutz",
-    "Mobile-first, Core Web Vitals"
-  ]},
-  { id: "infra", title: "INFRASTRUCTURE", priority: "Low", items: [
-    "WPEngine (Staging + Prod), Git Deployment, SSL/DNS"
-  ]},
-  { id: "design", title: "DESIGN", priority: "Medium", items: [
-    "Designkonzept basierend auf weil.com Templates, mit individuellen L\u00f6sungen",
-    "Figma: Home, Profil, Listing, Practice Area, News, Karriere",
-    "Mobile-first, responsive"
-  ]}
-];
+      /* ── DATA ── */
 
-const priorityMap = {
-  High:   { color: "#c62828", bg: "rgba(198,40,40,0.08)" },
-  Medium: { color: "#c49000", bg: "rgba(196,144,0,0.08)" },
-  Low:    { color: "#455a64", bg: "rgba(69,90,100,0.08)" }
-};
+      const modules = [
+        { id: "team", title: "TEAM / PEOPLE", priority: "High", items: [
+          "50–60 attorney profiles (full: Partner/Counsel, compact: Junior)",
+          "Fields: Name, Photo, Title, Practice Areas, Focus, Education, Background, Track Record, Publications, Languages, V-Card, Video (Partner), JUVE/Chambers",
+          "Search + Filter (Practice Area, Title, Name)",
+          "2-click GDPR video embed (Vimeo/YouTube)",
+          "REST API endpoint for CV data (US site pulls)",
+          "Data import tool for attorney profiles (CSV/Excel → WordPress, mapping to ACF fields)"
+        ]},
+        { id: "home", title: "HOME", priority: "Medium", items: [
+          "Long-scroll: Hero, Introduction, Practice Areas (7 tabs → /expertise/), Featured Team (4–6 Partners → /team/), Deal Highlights (dynamic, CPT), News Teaser, Careers Teaser, Contact (footer area)",
+          "Global search (Attorneys, News, Deals)"
+        ]},
+        { id: "expertise", title: "EXPERTISE", priority: "Medium", items: [
+          "7 Practice Areas: Private Equity & M&A, Restructuring/Insolvency, Dispute Resolution, Finance, Tax, Antitrust, Employment",
+          "One page each (single template), auto-populated: linked attorneys, deals, articles",
+          "Client-provided: description text per Practice Area"
+        ]},
+        { id: "news", title: "NEWS & INSIGHTS", priority: "Medium", items: [
+          "One CPT, local content + RSS import (weil.com, Germany tag)",
+          "Archive with filter and search"
+        ]},
+        { id: "careers", title: "CAREERS", priority: "Low", items: [
+          "Workday embed/link (no custom build)",
+          "Testimonials, Benefits (static)"
+        ]},
+        { id: "i18n", title: "MULTILINGUAL", priority: "Medium", items: [
+          "WPML + DeepL, DE/EN toggle, hreflang"
+        ]},
+        { id: "tech", title: "TECHNICAL / COMPLIANCE", priority: "Medium", items: [
+          "Cookie consent (fully compliant, DE/EU)",
+          "2-click video facade, Imprint, Privacy Policy",
+          "Mobile-first, Core Web Vitals"
+        ]},
+        { id: "infra", title: "INFRASTRUCTURE", priority: "Low", items: [
+          "WPEngine (Staging + Prod), Git Deployment"
+        ]},
+        { id: "design", title: "DESIGN", priority: "Medium", items: [
+          "Design concept based on weil.com templates with custom solutions",
+          "Figma: Home, Profile, Listing, Practice Area, News, Careers",
+          "Mobile-first, responsive"
+        ]}
+      ];
 
-const roadmap = [
-  { week: "W1",   label: "Konzept & Scope",      desc: "Anforderungen, Informationsarchitektur, Datenmodell", color: "#455a64" },
-  { week: "W2\u20133", label: "Wireframes + Content", desc: "Seitenstruktur, Templates. Client liefert: Feedback, erste Inhalte", color: "#c49000" },
-  { week: "W3\u20134", label: "Design",              desc: "Figma UI-Konzept, Brand Abstimmung. Client liefert: Design-Feedback", color: "#c49000" },
-  { week: "W3\u20137", label: "Entwicklung",          desc: "Theme, CPTs, Profile, News + RSS, Careers Embed, REST API", color: "#43a047" },
-  { week: "W5\u20137", label: "Integration",          desc: "WPML + DeepL, Cookie Consent, Legal Pages, Content-Einpflege", color: "#43a047" },
-  { week: "W8\u20139", label: "Testing & Go-Live",    desc: "QA, Performance, SEO-Audit, Deployment, Handover", color: "#43a047" },
-];
+      const priorityMap = {
+        High:   { color: "#1a1a1a", bg: "rgba(26,26,26,0.06)" },
+        Medium: { color: "#455a64", bg: "rgba(69,90,100,0.06)" },
+        Low:    { color: "#9e9e9e", bg: "rgba(158,158,158,0.06)" }
+      };
 
-const sitemapData = [
-  { path: "/",                   label: "Home",                    desc: "Long-Scroll: Hero, Kurzvorstellung, Practices, Featured Team, Deals, News, Karriere, Kontakt", depth: 0 },
-  { path: "/team/",              label: "Team-\u00dcbersicht",     desc: "Listing + Filter", depth: 0 },
-  { path: "/team/{name}/",       label: "Anwaltsprofil",           desc: "\u00d7 50\u201360", depth: 1 },
-  { path: "/expertise/{slug}/",  label: "Practice Area",           desc: "\u00d7 7, ein Template", depth: 0 },
-  { path: "/news/",              label: "News-Archiv",             desc: "", depth: 0 },
-  { path: "/news/{slug}/",       label: "Einzelartikel",           desc: "", depth: 1 },
-  { path: "/karriere/",          label: "Karriere",                desc: "Workday Embed + Testimonials + Benefits", depth: 0 },
-  { path: "/impressum/",         label: "Impressum",               desc: "", depth: 0 },
-  { path: "/datenschutz/",       label: "Datenschutzerkl\u00e4rung", desc: "", depth: 0 },
-];
+      const roadmap = [
+        { week: "W1",   label: "Concept & Scope",       desc: "Requirements, information architecture, data model", color: "#455a64" },
+        { week: "W2–3", label: "Wireframes + Content",  desc: "Page structure, templates. Client delivers: feedback, initial content", color: "#c49000" },
+        { week: "W3–4", label: "Design",                desc: "Figma UI concept, brand alignment. Client delivers: design feedback", color: "#c49000" },
+        { week: "W3–7", label: "Development",           desc: "Theme, CPTs, Profiles, News + RSS, Careers Embed, REST API", color: "#43a047" },
+        { week: "W5–7", label: "Integration",           desc: "WPML + DeepL, Cookie Consent, Legal Pages, Content Entry", color: "#43a047" },
+        { week: "W8–9", label: "Testing & Go-Live",     desc: "QA, Performance, SEO Audit, Deployment, Handover", color: "#43a047" },
+      ];
 
-const notInScope = [
-  "Content-Erstellung, \u00dcbersetzungen, Fotografie/Video",
-  "WPEngine-Hosting, Plugin-Lizenzen",
-  "DSGVO-Rechtsberatung / AV-Vertrag",
-  "Workday Portal Build",
-  "Aktives Pushing nach weil.com",
-  "Wartung / Support nach Go-Live (separates SLA)"
-];
+      const sitemapData = [
+        { path: "/",                   label: "Home",                    desc: "Long-scroll: Hero, Introduction, Practices, Featured Team, Deals, News, Careers, Contact", depth: 0 },
+        { path: "/team/",              label: "Team Overview",           desc: "Listing + Filter", depth: 0 },
+        { path: "/team/dr-anna-mueller/", label: "Attorney Profile",     desc: "× 50–60", depth: 1 },
+        { path: "/expertise/restrukturierung-insolvenz/", label: "Practice Area", desc: "× 7, single template (Description & Key Facts, Key Contacts, Attorneys, Rankings, Selected Mandates, Latest Articles)", depth: 0 },
+        { path: "/news/",              label: "News Archive",            desc: "", depth: 0 },
+        { path: "/news/weil-beraet-unternehmen-bei-uebernahme/", label: "Single Article", desc: "", depth: 1 },
+        { path: "/karriere/",          label: "Careers",                 desc: "Workday Embed + Testimonials + Benefits", depth: 0 },
+        { path: "/impressum/",         label: "Imprint",                 desc: "", depth: 0 },
+        { path: "/datenschutz/",       label: "Privacy Policy",          desc: "", depth: 0 },
+      ];
 
-const sysNodes = [
-  { id: "wp",       label: "WordPress CMS", sub: "de.weil.com",    x: 310, y: 130, w: 185, h: 70, color: "#43a047", primary: true },
-  { id: "sitecore", label: "Sitecore CMS",  sub: "weil.com (US)",  x: 310, y: 15,  w: 185, h: 55, color: "#1a1a1a" },
-  { id: "wpengine", label: "WPEngine",      sub: "Hosting (US)",   x: 60,  y: 15,  w: 155, h: 50, color: "#455a64" },
-  { id: "rss",      label: "RSS Feed",      sub: "weil.com News",  x: 60,  y: 80,  w: 155, h: 50, color: "#455a64" },
-  { id: "editors",  label: "Editors",        sub: "Weil DE Team",   x: 60,  y: 145, w: 155, h: 50, color: "#546e7a" },
-  { id: "wpml",     label: "WPML",          sub: "DE / EN",        x: 590, y: 140, w: 145, h: 50, color: "#c49000" },
-  { id: "workday",  label: "Workday",       sub: "Job Portal",     x: 590, y: 15,  w: 145, h: 50, color: "#9e9e9e" },
-  { id: "juve",     label: "JUVE / Chambers", sub: "Manual",        x: 590, y: 78,  w: 145, h: 44, color: "#9e9e9e" },
-];
+      const notInScope = [
+        "Content creation, translations, photography/video",
+        "Licenses and third-party services (plugins, hosting, fonts, DeepL etc.)",
+        "GDPR legal counsel / DPA agreement",
+        "Workday Portal Build",
+        "Active pushing to weil.com",
+        "Maintenance / Support after Go-Live (separate SLA)"
+      ];
 
-const sysEdges = [
-  { from: "wpengine", to: "wp",       label: "Hosting",             dash: false, color: "#43a047" },
-  { from: "editors",  to: "wp",       label: "Content",             dash: false, color: "#43a047" },
-  { from: "rss",      to: "wp",       label: "News Import",         dash: false, color: "#43a047" },
-  { from: "wp",       to: "wpml",     label: "DE / EN",             dash: false, color: "#43a047" },
-  { from: "wp",       to: "sitecore", label: "REST API (US pulls)", dash: false, color: "#43a047" },
-  { from: "workday",  to: "wp",       label: "Embed",               dash: true,  color: "#9e9e9e" },
-  { from: "juve",     to: "wp",       label: "Manual",              dash: true,  color: "#9e9e9e" },
-];
+      const sysNodes = [
+        { id: "wp",       label: "WordPress CMS", sub: "de.weil.com",    x: 310, y: 130, w: 185, h: 70, color: "#43a047", primary: true },
+        { id: "sitecore", label: "Sitecore CMS",  sub: "weil.com (US)",  x: 310, y: 15,  w: 185, h: 55, color: "#1a1a1a" },
+        { id: "wpengine", label: "WPEngine",      sub: "Hosting (US)",   x: 60,  y: 15,  w: 155, h: 50, color: "#455a64" },
+        { id: "rss",      label: "RSS Feed",      sub: "weil.com News",  x: 60,  y: 80,  w: 155, h: 50, color: "#455a64" },
+        { id: "editors",  label: "Editors",        sub: "Weil DE Team",   x: 60,  y: 145, w: 155, h: 50, color: "#546e7a" },
+        { id: "wpml",     label: "WPML",          sub: "DE / EN",        x: 590, y: 140, w: 145, h: 50, color: "#c49000" },
+        { id: "workday",  label: "Workday",       sub: "Job Portal",     x: 590, y: 15,  w: 145, h: 50, color: "#9e9e9e" },
+        { id: "juve",     label: "JUVE / Chambers", sub: "Manual",        x: 590, y: 78,  w: 145, h: 44, color: "#9e9e9e" },
+      ];
 
-const dataModel = [
-  { cpt: "attorney",    purpose: "Profiles (50\u201360)",    relations: "\u2192 practice-area, \u2192 title, \u2190 insight" },
-  { cpt: "insight",     purpose: "News & Artikel",           relations: "\u2192 attorney, \u2192 practice-area" },
-  { cpt: "deal",        purpose: "Deal Highlights",          relations: "\u2192 attorney, \u2192 practice-area, year" },
-  { cpt: "testimonial", purpose: "Mitarbeiter-Stories",      relations: "photo, video (optional)" },
-];
+      const sysEdges = [
+        { from: "wpengine", to: "wp",       label: "Hosting",             dash: false, color: "#43a047" },
+        { from: "editors",  to: "wp",       label: "Content",             dash: false, color: "#43a047" },
+        { from: "rss",      to: "wp",       label: "News Import",         dash: false, color: "#43a047" },
+        { from: "wp",       to: "wpml",     label: "DE / EN",             dash: false, color: "#43a047" },
+        { from: "wp",       to: "sitecore", label: "REST API (US pulls)", dash: false, color: "#43a047" },
+        { from: "workday",  to: "wp",       label: "Embed",               dash: true,  color: "#9e9e9e" },
+        { from: "juve",     to: "wp",       label: "Manual",              dash: true,  color: "#9e9e9e" },
+      ];
 
-/* ── SYSTEM LANDSCAPE SVG ── */
+      const dataModel = [
+        { cpt: "attorney",    purpose: "Profiles (50–60)",        relations: "→ practice-area, → title, ← insight" },
+        { cpt: "insight",     purpose: "News & Articles",           relations: "→ attorney, → practice-area" },
+        { cpt: "deal",        purpose: "Deal Highlights",          relations: "→ attorney, → practice-area, year" },
+        { cpt: "testimonial", purpose: "Employee Stories",         relations: "photo, video (optional)" },
+      ];
 
-function SystemDiagram({ hov, setHov }) {
-  return (
-    <svg viewBox="0 0 800 225" style={{ width: "100%", height: "auto" }}>
-      <defs>
-        <marker id="ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
-        <marker id="agrey" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#9e9e9e" /></marker>
-        <filter id="ds"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
-      </defs>
-      <rect width="800" height="225" fill="#fafaf8" />
-      <g opacity="0.03">{Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="800" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 32 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="225" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
-      {sysEdges.map((e, i) => {
-        const f = sysNodes.find(n => n.id === e.from), t = sysNodes.find(n => n.id === e.to);
-        if (!f || !t) return null;
-        const x1 = f.x + f.w/2, y1 = f.y + f.h/2, x2 = t.x + t.w/2, y2 = t.y + t.h/2;
-        const mx = (x1+x2)/2, my = (y1+y2)/2;
-        return (<g key={i}>
-          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={e.color} strokeWidth={1.5} strokeDasharray={e.dash ? "8,5" : "none"} opacity={e.dash ? 0.6 : 0.7} markerEnd={e.dash ? "url(#agrey)" : "url(#ag)"} />
-          {e.label && <text x={mx} y={my - 7} fill={e.color} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif" fontWeight="600">{e.label}</text>}
-        </g>);
-      })}
-      {sysNodes.map(n => {
-        const h = hov === n.id;
+      /* ── SYSTEM LANDSCAPE SVG ── */
+
+      function SystemDiagram({ hov, setHov }) {
         return (
-          <g key={n.id} onMouseEnter={() => setHov(n.id)} onMouseLeave={() => setHov(null)} style={{ cursor: "default" }} filter="url(#ds)">
-            <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="4" fill={h ? n.color : "#fff"} stroke={n.primary ? "#43a047" : h ? n.color : "#ddd"} strokeWidth={n.primary ? 2 : h ? 1.5 : 1} />
-            {n.primary && !h && <line x1={n.x} y1={n.y + n.h} x2={n.x + n.w} y2={n.y + n.h} stroke="#43a047" strokeWidth="3" />}
-            <text x={n.x + n.w/2} y={n.y + n.h/2 - (n.sub ? 5 : 0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.label}</text>
-            {n.sub && <text x={n.x + n.w/2} y={n.y + n.h/2 + 10} fill={h ? "rgba(255,255,255,0.75)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.sub}</text>}
-          </g>
-        );
-      })}
-      <g><line x1="560" y1="215" x2="585" y2="215" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="592" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">Confirmed</text><line x1="670" y1="215" x2="695" y2="215" stroke="#9e9e9e" strokeWidth="1.5" strokeDasharray="8,5" opacity="0.6" /><text x="702" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">External / Manual</text></g>
-    </svg>
-  );
-}
-
-/* ── CONTENT FLOW SVG ── */
-
-function ContentFlowDiagram({ hov2, setHov2 }) {
-  const sf = "'DM Sans',sans-serif";
-  const bw = 150, bh = 52, pw = 175, ph = 48;
-  const sX = 30, pX = 335, oX = 650;
-  const sources = [
-    { id: "att", label: "DE Attorneys",  sub: "Profiles, Bios",        y: 40,  color: "#1a1a1a" },
-    { id: "rss", label: "RSS Feed",      sub: "weil.com Articles",     y: 110, color: "#455a64" },
-    { id: "mkt", label: "Marketing DE",  sub: "News, Deals, Insights", y: 180, color: "#455a64" },
-  ];
-  const procs = [
-    { id: "cms",    label: "WordPress CMS",    sub: "Content Hub",              y: 35,  h: 58, color: "#43a047", primary: true },
-    { id: "review", label: "Editorial Review",  sub: "Quality Assurance",        y: 110, h: ph, color: "#455a64" },
-    { id: "trans",  label: "Translation",       sub: "WPML / DeepL",            y: 175, h: ph, color: "#c49000" },
-    { id: "gdpr",   label: "GDPR / Compliance", sub: "Consent + Data Protection", y: 240, h: ph, color: "#455a64" },
-  ];
-  const outputs = [
-    { id: "site",   label: "de.weil.com",      sub: "Public Website (DE+EN)", y: 50,  color: "#43a047" },
-    { id: "mirror", label: "weil.com CV Data",  sub: "REST API",               y: 130, color: "#455a64" },
-  ];
-  const flowLines = [
-    { x1: sX+bw, y1: 66,  x2: pX,       y2: 60 },
-    { x1: sX+bw, y1: 136, x2: pX,       y2: 64 },
-    { x1: sX+bw, y1: 206, x2: pX,       y2: 64 },
-    { x1: pX+pw/2, y1: 93,  x2: pX+pw/2, y2: 110 },
-    { x1: pX+pw/2, y1: 158, x2: pX+pw/2, y2: 175 },
-    { x1: pX+pw/2, y1: 223, x2: pX+pw/2, y2: 240 },
-    { x1: pX+pw, y1: 134, x2: oX, y2: 76 },
-    { x1: pX+pw, y1: 60,  x2: oX, y2: 156 },
-  ];
-  return (
-    <svg viewBox="0 0 870 310" style={{ width: "100%", height: "auto" }}>
-      <defs>
-        <marker id="fg" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
-        <filter id="ds2"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
-      </defs>
-      <rect width="870" height="310" fill="#fafaf8" />
-      <g opacity="0.03">{Array.from({ length: 13 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="870" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 35 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="310" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
-      <text x={sX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">CONTENT SOURCES</text>
-      <text x={pX+pw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">PROCESSING</text>
-      <text x={oX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">OUTPUTS</text>
-      {flowLines.map((l, i) => (<g key={i}><line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="#43a047" strokeWidth={1.5} opacity={0.5} markerEnd="url(#fg)" /></g>))}
-      {sources.map(s => { const h = hov2 === s.id; return (<g key={s.id} onMouseEnter={() => setHov2(s.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={sX} y={s.y} width={bw} height={bh} rx="4" fill={h ? s.color : "#fff"} stroke={h ? s.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={sX+bw/2} y={s.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{s.label}</text><text x={sX+bw/2} y={s.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{s.sub}</text></g>); })}
-      {procs.map(p => { const h = hov2 === p.id; return (<g key={p.id} onMouseEnter={() => setHov2(p.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={pX} y={p.y} width={pw} height={p.h} rx="4" fill={h ? p.color : "#fff"} stroke={p.primary ? "#43a047" : h ? p.color : "#ddd"} strokeWidth={p.primary ? 2 : h ? 1.5 : 1} />{p.primary && !h && <line x1={pX} y1={p.y+p.h} x2={pX+pw} y2={p.y+p.h} stroke="#43a047" strokeWidth="3" />}<text x={pX+pw/2} y={p.y+p.h/2-(p.sub?4:0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{p.label}</text>{p.sub && <text x={pX+pw/2} y={p.y+p.h/2+10} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{p.sub}</text>}</g>); })}
-      {outputs.map(o => { const h = hov2 === o.id; return (<g key={o.id} onMouseEnter={() => setHov2(o.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={oX} y={o.y} width={bw} height={bh} rx="4" fill={h ? o.color : "#fff"} stroke={h ? o.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={oX+bw/2} y={o.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{o.label}</text><text x={oX+bw/2} y={o.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{o.sub}</text></g>); })}
-      <g><line x1="640" y1="298" x2="665" y2="298" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="672" y="301" fill="#888" fontSize="8" fontFamily={sf} fontWeight="500">Confirmed</text></g>
-    </svg>
-  );
-}
-
-/* ── DASHBOARD COMPONENT ── */
-
-function Dashboard() {
-  const [tab, setTab] = useState("roadmap");
-  const [exp, setExp] = useState(null);
-  const [hov, setHov] = useState(null);
-  const [hov2, setHov2] = useState(null);
-  const [vis, setVis] = useState(false);
-  useEffect(() => { requestAnimationFrame(() => setVis(true)); }, []);
-
-  const sf = "'DM Sans',sans-serif";
-  const hf = "'Cormorant Garamond',serif";
-
-  const tabs = [
-    { id: "roadmap",      label: "Roadmap & Milestones" },
-    { id: "scope",        label: "Scope of Work" },
-    { id: "architecture", label: "Architecture & Data" },
-  ];
-
-  return (
-    <div style={{ minHeight: "100vh", background: "#fafaf8" }}>
-      <style>{`
-        *{box-sizing:border-box}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-        .fu{animation:fadeUp .5s ease-out both}
-        .d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
-        .fr{padding:14px 18px;margin-bottom:4px;border-radius:6px;cursor:pointer;background:#fff;border:1px solid transparent;transition:all .15s}
-        .fr:hover{border-color:#e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,.03)}.fr.op{border-color:#43a047;background:#fafaf8}
-        .seg-wrap{display:inline-flex;background:#eeede9;border-radius:10px;padding:4px;gap:4px}
-        .seg-btn{padding:10px 22px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;background:transparent;color:#888;border-radius:7px;transition:all .25s cubic-bezier(.4,0,.2,1);letter-spacing:.2px}
-        .seg-btn:hover{color:#555}
-        .seg-btn.on{background:#1a1a1a;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-      `}</style>
-
-      <div style={{ background: "#1a1a1a", padding: "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <span style={{ fontFamily: hf, fontWeight: 700, fontSize: 24, color: "#fff", letterSpacing: 2 }}>Weil</span>
-          <div style={{ width: 1, height: 24, background: "rgba(255,255,255,.15)" }} />
-          <div>
-            <div style={{ color: "rgba(255,255,255,.9)", fontSize: 13, fontWeight: 600, fontFamily: sf }}>Germany Microsite</div>
-            <div style={{ color: "rgba(255,255,255,.4)", fontSize: 10, fontFamily: sf, letterSpacing: .5 }}>Project Scope & Delivery Plan</div>
-          </div>
-        </div>
-        <div style={{ color: "rgba(255,255,255,.3)", fontSize: 10, fontFamily: sf, letterSpacing: 1 }}>de.weil.com</div>
-      </div>
-      <div style={{ height: 2, background: "#43a047" }} />
-
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "36px 32px 60px" }}>
-
-        <div className="fu d1" style={{ marginBottom: 28, display: "flex", justifyContent: "center", opacity: vis ? undefined : 0 }}>
-          <div className="seg-wrap">
-            {tabs.map(t => (
-              <button key={t.id} className={`seg-btn ${tab === t.id ? "on" : ""}`} onClick={() => setTab(t.id)}>
-                {t.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* ── TAB 1: ROADMAP ── */}
-        {tab === "roadmap" && (
-          <div className="fu d1">
-            <div style={{ marginBottom: 32, padding: "28px 32px", background: "#fff", borderRadius: 10, border: "1px solid #f0f0f0" }}>
-              <h2 style={{ fontFamily: hf, fontSize: 26, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>de.weil.com</h2>
-              <p style={{ fontSize: 14, color: "#666", fontFamily: sf, margin: "0 0 12px", lineHeight: 1.6 }}>WordPress Microsite, Weil Germany (Frankfurt)</p>
-              <p style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: "0 0 20px" }}>Go-Live: Mai 2026 &nbsp;|&nbsp; 9 Wochen ab Kickoff &nbsp;|&nbsp; 36\u201340 PT</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: 13, color: "#555", fontFamily: sf, lineHeight: 1.7 }}>
-                <div><strong>Workday:</strong> externes Portal, wir betten ein (kein Build).</div>
-                <div><strong>CV Mirroring:</strong> wir stellen REST API bereit, US-Seite holt Daten.</div>
-                <div><strong>News:</strong> RSS-Import von weil.com. Keine Sitecore-Abh\u00e4ngigkeit.</div>
-              </div>
-            </div>
-
-            <div className="fu d2" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16, marginBottom: 32 }}>
-              {[{ label: "Modules", value: 8, color: "#1a1a1a" }, { label: "Timeline", value: "9 Wochen", color: "#43a047" }].map(k => (
-                <div key={k.label} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
-                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
-                  <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
-                  <div style={{ fontSize: 11, color: "#999", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="fu d3" style={{ marginBottom: 24 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Roadmap</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>9 Wochen ab Kickoff. Parallele Arbeitspakete erm\u00f6glichen die kompakte Timeline.</p>
-              <div style={{ display: "flex", gap: 0, overflow: "hidden", borderRadius: 8, border: "1px solid #f0f0f0" }}>
-                {roadmap.map((m, i) => (
-                  <div key={i} style={{ flex: 1, padding: "18px 14px", background: "#fff", borderRight: i < roadmap.length - 1 ? "1px solid #f0f0f0" : "none", position: "relative" }}>
-                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: m.color }} />
-                    <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 6 }}>{m.week}</div>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 4, lineHeight: 1.3 }}>{m.label}</div>
-                    <div style={{ fontSize: 9.5, color: "#999", fontFamily: sf, lineHeight: 1.5 }}>{m.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="fu d4" style={{ padding: "16px 20px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
-              <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: 0 }}>Content-Lieferung ist auf dem kritischen Pfad. Verz\u00f6gerungen verschieben den Go-Live 1:1.</p>
-            </div>
-          </div>
-        )}
-
-        {/* ── TAB 2: SCOPE OF WORK ── */}
-        {tab === "scope" && (
-          <div className="fu d1">
-            <div style={{ marginBottom: 32 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Sitemap</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>8 Templates | max. 2 Klicks bis zu jedem Inhalt</p>
-              <div style={{ background: "#fff", borderRadius: 8, padding: "20px 24px", border: "1px solid #f0f0f0" }}>
-                {sitemapData.map((s, i) => (
-                  <div key={i} style={{ display: "flex", gap: 12, alignItems: "baseline", padding: "6px 0", marginLeft: s.depth * 28, borderBottom: i < sitemapData.length - 1 ? "1px solid #f8f8f6" : "none" }}>
-                    <code style={{ fontSize: 12, color: "#43a047", fontWeight: 600, minWidth: s.depth ? 140 : 170, flexShrink: 0 }}>{s.path}</code>
-                    <span style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{s.label}</span>
-                    {s.desc && <span style={{ fontSize: 11, color: "#999", fontFamily: sf }}>{s.desc}</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: 24 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>Modules</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 16px" }}>{modules.length} Module. Klicken zum Aufklappen.</p>
-            </div>
-            {modules.map((m, mi) => {
-              const isO = exp === m.id;
-              const pr = priorityMap[m.priority];
+          <svg viewBox="0 0 800 225" style={{ width: "100%", height: "auto" }}>
+            <defs>
+              <marker id="ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
+              <marker id="agrey" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#9e9e9e" /></marker>
+              <filter id="ds"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
+            </defs>
+            <rect width="800" height="225" fill="#fafaf8" />
+            <g opacity="0.03">{Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="800" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 32 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="225" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
+            {sysEdges.map((e, i) => {
+              const f = sysNodes.find(n => n.id === e.from), t = sysNodes.find(n => n.id === e.to);
+              if (!f || !t) return null;
+              const x1 = f.x + f.w/2, y1 = f.y + f.h/2, x2 = t.x + t.w/2, y2 = t.y + t.h/2;
+              const mx = (x1+x2)/2, my = (y1+y2)/2;
+              return (<g key={i}>
+                <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={e.color} strokeWidth={1.5} strokeDasharray={e.dash ? "8,5" : "none"} opacity={e.dash ? 0.6 : 0.7} markerEnd={e.dash ? "url(#agrey)" : "url(#ag)"} />
+                {e.label && <text x={mx} y={my - 7} fill={e.color} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif" fontWeight="600">{e.label}</text>}
+              </g>);
+            })}
+            {sysNodes.map(n => {
+              const h = hov === n.id;
               return (
-                <div key={m.id} className={`fr ${isO ? "op" : ""}`} onClick={() => setExp(isO ? null : m.id)}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                    <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#f5f5f5", color: "#999", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{mi + 1}</span>
-                    <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{m.title}</span>
-                    <span style={{ padding: "3px 12px", borderRadius: 20, fontSize: 9, fontWeight: 700, color: pr.color, background: pr.bg, fontFamily: sf, letterSpacing: .5 }}>{m.priority.toUpperCase()}</span>
+                <g key={n.id} onMouseEnter={() => setHov(n.id)} onMouseLeave={() => setHov(null)} style={{ cursor: "default" }} filter="url(#ds)">
+                  <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="4" fill={h ? n.color : "#fff"} stroke={n.primary ? "#43a047" : h ? n.color : "#ddd"} strokeWidth={n.primary ? 2 : h ? 1.5 : 1} />
+                  {n.primary && !h && <line x1={n.x} y1={n.y + n.h} x2={n.x + n.w} y2={n.y + n.h} stroke="#43a047" strokeWidth="3" />}
+                  <text x={n.x + n.w/2} y={n.y + n.h/2 - (n.sub ? 5 : 0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.label}</text>
+                  {n.sub && <text x={n.x + n.w/2} y={n.y + n.h/2 + 10} fill={h ? "rgba(255,255,255,0.75)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily="'DM Sans',sans-serif">{n.sub}</text>}
+                </g>
+              );
+            })}
+            <g><line x1="560" y1="215" x2="585" y2="215" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="592" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">Confirmed</text><line x1="670" y1="215" x2="695" y2="215" stroke="#9e9e9e" strokeWidth="1.5" strokeDasharray="8,5" opacity="0.6" /><text x="702" y="218" fill="#888" fontSize="8" fontFamily="'DM Sans',sans-serif" fontWeight="500">External / Manual</text></g>
+          </svg>
+        );
+      }
+
+      /* ── CONTENT FLOW SVG ── */
+
+      function ContentFlowDiagram({ hov2, setHov2 }) {
+        const sf = "'DM Sans',sans-serif";
+        const bw = 150, bh = 52, pw = 175, ph = 48;
+        const sX = 30, pX = 335, oX = 650;
+        const sources = [
+          { id: "att", label: "DE Attorneys",  sub: "Profiles, Bios",        y: 40,  color: "#1a1a1a" },
+          { id: "rss", label: "RSS Feed",      sub: "weil.com Articles",     y: 110, color: "#455a64" },
+          { id: "mkt", label: "Marketing DE",  sub: "News, Deals, Insights", y: 180, color: "#455a64" },
+        ];
+        const procs = [
+          { id: "cms",    label: "WordPress CMS",    sub: "Content Hub",              y: 35,  h: 58, color: "#43a047", primary: true },
+          { id: "review", label: "Editorial Review",  sub: "Quality Assurance",        y: 110, h: ph, color: "#455a64" },
+          { id: "trans",  label: "Translation",       sub: "WPML / DeepL",            y: 175, h: ph, color: "#c49000" },
+          { id: "gdpr",   label: "GDPR / Compliance", sub: "Consent + Data Protection", y: 240, h: ph, color: "#455a64" },
+        ];
+        const outputs = [
+          { id: "site",   label: "de.weil.com",      sub: "Public Website (DE+EN)", y: 50,  color: "#43a047" },
+          { id: "mirror", label: "weil.com CV Data",  sub: "REST API",               y: 130, color: "#455a64" },
+        ];
+        const flowLines = [
+          { x1: sX+bw, y1: 66,  x2: pX,       y2: 60 },
+          { x1: sX+bw, y1: 136, x2: pX,       y2: 64 },
+          { x1: sX+bw, y1: 206, x2: pX,       y2: 64 },
+          { x1: pX+pw/2, y1: 93,  x2: pX+pw/2, y2: 110 },
+          { x1: pX+pw/2, y1: 158, x2: pX+pw/2, y2: 175 },
+          { x1: pX+pw/2, y1: 223, x2: pX+pw/2, y2: 240 },
+          { x1: pX+pw, y1: 134, x2: oX, y2: 76 },
+          { x1: pX+pw, y1: 60,  x2: oX, y2: 156 },
+        ];
+        return (
+          <svg viewBox="0 0 870 310" style={{ width: "100%", height: "auto" }}>
+            <defs>
+              <marker id="fg" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#43a047" /></marker>
+              <filter id="ds2"><feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.06" /></filter>
+            </defs>
+            <rect width="870" height="310" fill="#fafaf8" />
+            <g opacity="0.03">{Array.from({ length: 13 }, (_, i) => <line key={`h${i}`} x1="0" y1={i*25} x2="870" y2={i*25} stroke="#1a1a1a" strokeWidth="0.5" />)}{Array.from({ length: 35 }, (_, i) => <line key={`v${i}`} x1={i*25} y1="0" x2={i*25} y2="310" stroke="#1a1a1a" strokeWidth="0.5" />)}</g>
+            <text x={sX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">CONTENT SOURCES</text>
+            <text x={pX+pw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">PROCESSING</text>
+            <text x={oX+bw/2} y="25" fill="#bbb" fontSize="8" textAnchor="middle" fontFamily={sf} fontWeight="700" letterSpacing="1.5">OUTPUTS</text>
+            {flowLines.map((l, i) => (<g key={i}><line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="#43a047" strokeWidth={1.5} opacity={0.5} markerEnd="url(#fg)" /></g>))}
+            {sources.map(s => { const h = hov2 === s.id; return (<g key={s.id} onMouseEnter={() => setHov2(s.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={sX} y={s.y} width={bw} height={bh} rx="4" fill={h ? s.color : "#fff"} stroke={h ? s.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={sX+bw/2} y={s.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{s.label}</text><text x={sX+bw/2} y={s.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{s.sub}</text></g>); })}
+            {procs.map(p => { const h = hov2 === p.id; return (<g key={p.id} onMouseEnter={() => setHov2(p.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={pX} y={p.y} width={pw} height={p.h} rx="4" fill={h ? p.color : "#fff"} stroke={p.primary ? "#43a047" : h ? p.color : "#ddd"} strokeWidth={p.primary ? 2 : h ? 1.5 : 1} />{p.primary && !h && <line x1={pX} y1={p.y+p.h} x2={pX+pw} y2={p.y+p.h} stroke="#43a047" strokeWidth="3" />}<text x={pX+pw/2} y={p.y+p.h/2-(p.sub?4:0)} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{p.label}</text>{p.sub && <text x={pX+pw/2} y={p.y+p.h/2+10} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{p.sub}</text>}</g>); })}
+            {outputs.map(o => { const h = hov2 === o.id; return (<g key={o.id} onMouseEnter={() => setHov2(o.id)} onMouseLeave={() => setHov2(null)} filter="url(#ds2)"><rect x={oX} y={o.y} width={bw} height={bh} rx="4" fill={h ? o.color : "#fff"} stroke={h ? o.color : "#ddd"} strokeWidth={h ? 1.5 : 1} /><text x={oX+bw/2} y={o.y+22} fill={h ? "#fff" : "#1a1a1a"} fontSize="10" fontWeight="600" textAnchor="middle" fontFamily={sf}>{o.label}</text><text x={oX+bw/2} y={o.y+37} fill={h ? "rgba(255,255,255,0.7)" : "#999"} fontSize="7.5" textAnchor="middle" fontFamily={sf}>{o.sub}</text></g>); })}
+            <g><line x1="640" y1="298" x2="665" y2="298" stroke="#43a047" strokeWidth="1.5" opacity="0.7" /><text x="672" y="301" fill="#888" fontSize="8" fontFamily={sf} fontWeight="500">Confirmed</text></g>
+          </svg>
+        );
+      }
+
+      /* ── DASHBOARD COMPONENT ── */
+
+      function Dashboard() {
+        const [tab, setTab] = useState("roadmap");
+        const [exp, setExp] = useState(null);
+        const [hov, setHov] = useState(null);
+        const [hov2, setHov2] = useState(null);
+        const [vis, setVis] = useState(false);
+        const mob = useIsMobile();
+        useEffect(() => { requestAnimationFrame(() => setVis(true)); }, []);
+
+        const sf = "'DM Sans',sans-serif";
+        const hf = "'Cormorant Garamond',serif";
+
+        const tabs = [
+          { id: "roadmap",      label: "Roadmap & Milestones" },
+          { id: "scope",        label: "Scope of Work" },
+          { id: "architecture", label: "Architecture & Data" },
+        ];
+
+        return (
+          <div style={{ minHeight: "100vh", background: "#fafaf8" }}>
+            <style>{`
+              *{box-sizing:border-box}
+              @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+              .fu{animation:fadeUp .5s ease-out both}
+              .d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}
+              .fr{padding:14px 18px;margin-bottom:4px;border-radius:6px;cursor:pointer;background:#fff;border:1px solid transparent;transition:all .15s}
+              .fr:hover{border-color:#e0e0e0;box-shadow:0 2px 8px rgba(0,0,0,.03)}.fr.op{border-color:#43a047;background:#fafaf8}
+              .seg-wrap{display:inline-flex;background:#eeede9;border-radius:10px;padding:4px;gap:4px}
+              .seg-btn{padding:10px 22px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;background:transparent;color:#888;border-radius:7px;transition:all .25s cubic-bezier(.4,0,.2,1);letter-spacing:.2px}
+              .seg-btn:hover{color:#555}
+              .seg-btn.on{background:#1a1a1a;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+              @media(max-width:640px){
+                .seg-wrap{width:100%}
+                .seg-btn{padding:8px 6px;font-size:11px;flex:1;text-align:center}
+                .fr{padding:12px 14px}
+                .svg-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+              }
+            `}</style>
+
+            <div style={{ background: "#1a1a1a", padding: mob ? "12px 16px" : "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: mob ? "auto" : 56 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: mob ? 12 : 20 }}>
+                <img src="WeilLogoDesktop.png" alt="Weil" style={{ height: mob ? 22 : 28 }} />
+                <div style={{ width: 1, height: 24, background: "rgba(255,255,255,.15)" }} />
+                <div>
+                  <div style={{ color: "rgba(255,255,255,.9)", fontSize: mob ? 11 : 13, fontWeight: 600, fontFamily: sf }}>Germany Microsite</div>
+                  <div style={{ color: "rgba(255,255,255,.4)", fontSize: mob ? 9 : 10, fontFamily: sf, letterSpacing: .5 }}>Project Scope & Delivery Plan</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ height: 2, background: "#43a047" }} />
+
+            <div style={{ maxWidth: 980, margin: "0 auto", padding: mob ? "20px 14px 40px" : "36px 32px 60px" }}>
+
+              <div className="fu d1" style={{ marginBottom: 28, display: "flex", justifyContent: "center", opacity: vis ? undefined : 0 }}>
+                <div className="seg-wrap">
+                  {tabs.map(t => (
+                    <button key={t.id} className={`seg-btn ${tab === t.id ? "on" : ""}`} onClick={() => setTab(t.id)}>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── TAB 1: ROADMAP ── */}
+              {tab === "roadmap" && (
+                <div className="fu d1">
+                  <div style={{ marginBottom: mob ? 20 : 32, padding: mob ? "20px 16px" : "28px 32px", background: "#fff", borderRadius: 10, border: "1px solid #f0f0f0" }}>
+                    <h2 style={{ fontFamily: hf, fontSize: mob ? 22 : 26, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>de.weil.com</h2>
+                    <p style={{ fontSize: 14, color: "#666", fontFamily: sf, margin: "0 0 12px", lineHeight: 1.6 }}>WordPress Microsite, Weil Germany</p>
+                    <p style={{ fontSize: mob ? 13 : 16, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: "0 0 20px", lineHeight: 1.6 }}>Go-Live: May 2026 &nbsp;|&nbsp; 9 Weeks from Kickoff</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: 13, color: "#555", fontFamily: sf, lineHeight: 1.7 }}>
+                      <div><strong>Careers:</strong> Career portal will be embedded (Workday Embed), no separate build required.</div>
+                      <div><strong>CV Mirroring:</strong> Attorney profiles are automatically provided to the US website (via REST API).</div>
+                      <div><strong>News:</strong> Relevant news from weil.com are automatically imported (via RSS feed).</div>
+                    </div>
                   </div>
-                  {isO && (
-                    <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #f0f0f0" }}>
-                      {m.items.map((item, ii) => (
-                        <div key={ii} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
-                          <span style={{ color: "#43a047", fontSize: 10, marginTop: 4, flexShrink: 0 }}>{"\u25CF"}</span>
-                          <span style={{ fontSize: 12, color: "#555", lineHeight: 1.7, fontFamily: sf }}>{item}</span>
+
+                  <div className="fu d2" style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "repeat(3,1fr)", gap: 16, marginBottom: 32 }}>
+                    {[{ label: "Modules", value: 8, color: "#1a1a1a" }, { label: "Timeline", value: "9 Weeks", color: "#43a047" }, { label: "Templates", value: 8, color: "#455a64", sub: "5 main pages + 3 dynamic templates (profiles, articles, practice areas)" }].map(k => (
+                      <div key={k.label} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
+                        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
+                        <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
+                        <div style={{ fontSize: 11, color: "#999", marginTop: 8, fontFamily: sf, fontWeight: 500, letterSpacing: .8, textTransform: "uppercase" }}>{k.label}</div>
+                        {k.sub && <div style={{ fontSize: 10, color: "#bbb", marginTop: 6, fontFamily: sf, lineHeight: 1.4 }}>{k.sub}</div>}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="fu d3" style={{ marginBottom: 24 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Roadmap</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>9 weeks from kickoff. Parallel work packages enable the compact timeline.</p>
+                    <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "repeat(3, 1fr)", gap: mob ? 10 : 12 }}>
+                      {roadmap.map((m, i) => (
+                        <div key={i} style={{ padding: mob ? "16px 14px" : "20px 18px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
+                          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: m.color }} />
+                          <div style={{ fontSize: 10, fontWeight: 700, color: m.color, fontFamily: sf, letterSpacing: 1, marginBottom: 6 }}>{m.week}</div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf, marginBottom: 6, lineHeight: 1.3 }}>{m.label}</div>
+                          <div style={{ fontSize: 11, color: "#999", fontFamily: sf, lineHeight: 1.6 }}>{m.desc}</div>
                         </div>
                       ))}
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                  </div>
 
-            <div style={{ marginTop: 28, padding: "20px 24px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #9e9e9e" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, color: "#9e9e9e", marginBottom: 12, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Nicht im Scope</div>
-              {notInScope.map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
-                  <span style={{ color: "#ccc", fontSize: 12, flexShrink: 0 }}>{"\u2014"}</span>
-                  <span style={{ fontSize: 12, color: "#888", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
+                  <div className="fu d4" style={{ padding: "16px 20px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #c49000" }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", fontFamily: sf, margin: 0 }}>Content/Feedback delivery is on the critical path. Delays shift the go-live date 1:1.</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              )}
 
-        {/* ── TAB 3: ARCHITECTURE & DATA ── */}
-        {tab === "architecture" && (
-          <div className="fu d1">
-            <div style={{ marginBottom: 40 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>System Landscape</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#43a047" }}>Green</span> = confirmed, <span style={{ color: "#9e9e9e" }}>grey dashed</span> = external / manual.</p>
-              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><SystemDiagram hov={hov} setHov={setHov} /></div>
-            </div>
-            <div style={{ marginBottom: 40 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Content & Data Flow</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication.</p>
-              <div style={{ background: "#fff", borderRadius: 8, padding: 20, border: "1px solid #f0f0f0" }}><ContentFlowDiagram hov2={hov2} setHov2={setHov2} /></div>
-            </div>
-            <div style={{ marginBottom: 32 }}>
-              <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Data Model</h2>
-              <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>WordPress Custom Post Types and Taxonomies.</p>
-              <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", overflow: "hidden" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, fontFamily: sf }}>
-                  <thead>
-                    <tr style={{ background: "#fafaf8", borderBottom: "2px solid #f0f0f0" }}>
-                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>CPT</th>
-                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Purpose</th>
-                      <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Relations</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dataModel.map(row => (
-                      <tr key={row.cpt} style={{ borderBottom: "1px solid #f0f0f0" }}>
-                        <td style={{ padding: "12px 20px" }}><code style={{ fontSize: 12, color: "#43a047", fontWeight: 600 }}>{row.cpt}</code></td>
-                        <td style={{ padding: "12px 20px", color: "#444" }}>{row.purpose}</td>
-                        <td style={{ padding: "12px 20px", color: "#888", fontSize: 12 }}>{row.relations}</td>
-                      </tr>
+              {/* ── TAB 2: SCOPE OF WORK ── */}
+              {tab === "scope" && (
+                <div className="fu d1">
+                  <div style={{ marginBottom: 32 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Sitemap</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>8 Templates | max. 2 clicks to any content</p>
+                    <div style={{ background: "#fff", borderRadius: 8, padding: mob ? "14px 12px" : "20px 24px", border: "1px solid #f0f0f0" }}>
+                      {sitemapData.map((s, i) => (
+                        <div key={i} style={{ display: mob ? "block" : "flex", gap: 12, alignItems: "baseline", padding: mob ? "8px 0" : "6px 0", marginLeft: s.depth * (mob ? 16 : 28), borderBottom: i < sitemapData.length - 1 ? "1px solid #f8f8f6" : "none" }}>
+                          <code style={{ fontSize: mob ? 11 : 12, color: "#43a047", fontWeight: 600, minWidth: mob ? "auto" : (s.depth ? 140 : 170), flexShrink: 0, display: mob ? "block" : "inline", marginBottom: mob ? 2 : 0 }}>{s.path}</code>
+                          <span style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{s.label}</span>
+                          {s.desc && <span style={{ fontSize: 11, color: "#999", fontFamily: sf, marginLeft: mob ? 4 : 0 }}>{s.desc}</span>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: 24 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 8px", letterSpacing: -.5 }}>Modules</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 16px" }}>{modules.length} modules. Click to expand.</p>
+                  </div>
+                  {modules.map((m, mi) => {
+                    const isO = exp === m.id;
+                    const pr = priorityMap[m.priority];
+                    return (
+                      <div key={m.id} className={`fr ${isO ? "op" : ""}`} onClick={() => setExp(isO ? null : m.id)}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                          <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#f5f5f5", color: "#999", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, flexShrink: 0, fontFamily: sf }}>{mi + 1}</span>
+                          <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#1a1a1a", fontFamily: sf }}>{m.title}</span>
+                          <span style={{ padding: "3px 12px", borderRadius: 20, fontSize: 9, fontWeight: 700, color: pr.color, background: pr.bg, fontFamily: sf, letterSpacing: .5 }}>{m.priority.toUpperCase()}</span>
+                        </div>
+                        {isO && (
+                          <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #f0f0f0" }}>
+                            {m.items.map((item, ii) => (
+                              <div key={ii} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                                <span style={{ color: "#43a047", fontSize: 10, marginTop: 4, flexShrink: 0 }}>{"●"}</span>
+                                <span style={{ fontSize: 12, color: "#555", lineHeight: 1.7, fontFamily: sf }}>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+
+                  <div style={{ marginTop: 28, padding: "20px 24px", background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", borderLeft: "3px solid #9e9e9e" }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "#9e9e9e", marginBottom: 12, fontFamily: sf, letterSpacing: .8, textTransform: "uppercase" }}>Not in Scope</div>
+                    {notInScope.map((item, i) => (
+                      <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                        <span style={{ color: "#ccc", fontSize: 12, flexShrink: 0 }}>{"—"}</span>
+                        <span style={{ fontSize: 12, color: "#888", fontFamily: sf, lineHeight: 1.6 }}>{item}</span>
+                      </div>
                     ))}
-                  </tbody>
-                </table>
-                <div style={{ padding: "14px 20px", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888", fontFamily: sf }}>
-                  <strong style={{ color: "#666" }}>Taxonomies:</strong> practice-area (7), title (3), office (1+)
+                  </div>
                 </div>
+              )}
+
+              {/* ── TAB 3: ARCHITECTURE & DATA ── */}
+              {tab === "architecture" && (
+                <div className="fu d1">
+                  <div style={{ marginBottom: 40 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>System Landscape</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>Core technical components and dependencies. <span style={{ color: "#43a047" }}>Green</span> = confirmed, <span style={{ color: "#9e9e9e" }}>grey dashed</span> = external / manual.</p>
+                    <div className={mob ? "svg-scroll" : ""} style={{ background: "#fff", borderRadius: 8, padding: mob ? 12 : 20, border: "1px solid #f0f0f0" }}><div style={{ minWidth: mob ? 700 : "auto" }}><SystemDiagram hov={hov} setHov={setHov} /></div></div>
+                  </div>
+                  <div style={{ marginBottom: 40 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Content & Data Flow</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>How content moves from creation through processing to publication.</p>
+                    <div className={mob ? "svg-scroll" : ""} style={{ background: "#fff", borderRadius: 8, padding: mob ? 12 : 20, border: "1px solid #f0f0f0" }}><div style={{ minWidth: mob ? 600 : "auto" }}><ContentFlowDiagram hov2={hov2} setHov2={setHov2} /></div></div>
+                  </div>
+                  <div style={{ marginBottom: 32 }}>
+                    <h2 style={{ fontFamily: hf, fontSize: 28, fontWeight: 600, color: "#1a1a1a", margin: "0 0 4px", letterSpacing: -.5 }}>Data Model</h2>
+                    <p style={{ fontSize: 13, color: "#888", fontFamily: sf, margin: "0 0 20px" }}>WordPress Custom Post Types and Taxonomies.</p>
+                    <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #f0f0f0", overflowX: mob ? "auto" : "hidden", WebkitOverflowScrolling: "touch" }}>
+                      <table style={{ width: "100%", minWidth: mob ? 480 : "auto", borderCollapse: "collapse", fontSize: mob ? 12 : 13, fontFamily: sf }}>
+                        <thead>
+                          <tr style={{ background: "#fafaf8", borderBottom: "2px solid #f0f0f0" }}>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>CPT</th>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Purpose</th>
+                            <th style={{ padding: "12px 20px", textAlign: "left", fontWeight: 600, fontSize: 10, color: "#999", letterSpacing: .8, textTransform: "uppercase" }}>Relations</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {dataModel.map(row => (
+                            <tr key={row.cpt} style={{ borderBottom: "1px solid #f0f0f0" }}>
+                              <td style={{ padding: "12px 20px" }}><code style={{ fontSize: 12, color: "#43a047", fontWeight: 600 }}>{row.cpt}</code></td>
+                              <td style={{ padding: "12px 20px", color: "#444" }}>{row.purpose}</td>
+                              <td style={{ padding: "12px 20px", color: "#888", fontSize: 12 }}>{row.relations}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <div style={{ padding: "14px 20px", borderTop: "1px solid #f0f0f0", fontSize: 12, color: "#888", fontFamily: sf }}>
+                        <strong style={{ color: "#666" }}>Taxonomies:</strong> practice-area (7), title (3), office (2)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div style={{ marginTop: mob ? 28 : 48, paddingTop: 20, borderTop: "1px solid #eee", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 4 }}>
+                <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Kamanin IT Solutions — Weil, Gotshal & Manges LLP</span>
+                <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>As of: 1 March 2026 | Confidential</span>
               </div>
             </div>
           </div>
-        )}
+        );
+      }
 
-        <div style={{ marginTop: 48, paddingTop: 20, borderTop: "1px solid #eee", display: "flex", justifyContent: "space-between" }}>
-          <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Kamanin IT Solutions \u2014 Weil, Gotshal & Manges LLP</span>
-          <span style={{ fontSize: 9, color: "#ccc", fontFamily: sf, letterSpacing: .5 }}>Confidential</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('dashboard-root'));
-root.render(React.createElement(Dashboard));
+      const root = ReactDOM.createRoot(document.getElementById('dashboard-root'));
+      root.render(React.createElement(Dashboard));
     </script>
-</body>
+  </body>
 </html>
