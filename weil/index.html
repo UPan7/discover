@@ -265,11 +265,25 @@
       const modules = [
         { id: "team", title: "TEAM / PEOPLE", priority: "High", items: [
           "50–60 attorney profiles (full: Partner/Counsel, compact: Junior)",
-          "Fields: Name, Photo, Title, Practice Areas, Focus, Education, Background, Track Record, Publications, Languages, V-Card, Video (Partner), JUVE/Chambers",
-          "Search + Filter (Practice Area, Title, Name)",
+          "— Profile Page Structure —",
+          "Name, Title, Office (Frankfurt / Munich), Contact (Phone, Email)",
+          "Practice Areas (linked to /expertise/ pages)",
+          "Industries (labels, no dedicated subpages)",
+          "vCard Download, PDF Download (auto-generated from profile data), Share Button",
+          "Anchor navigation next to photo (jump links to profile sections)",
+          "Chambers Quotes — carousel, Partners only (manually maintained)",
+          "Profile / Biography — with Read More (threshold-based collapse)",
+          "Experience — with Read More",
+          "Qualifications: Bar Admission, Education, Practices, Industries",
+          "Recognition — with Read More (expandable list, no separate page)",
+          "News & Insights — auto-linked, last 3 visible, Read More expands further",
+          "Conditional display: empty sections are hidden (e.g. no News for juniors → no block)",
+          "JUVE / Chambers rankings (manual entry)",
           "2-click GDPR video embed (Vimeo/YouTube)",
           "REST API endpoint for CV data (US site pulls)",
-          "Data import tool for attorney profiles (CSV/Excel → WordPress, mapping to ACF fields)"
+          "— Team Overview (/team/) —",
+          "Sorting: by title rank (Partner → Counsel → Associate), then alphabetical",
+          "Search by Name + Filter: Practice Area, Office, Title, Industry"
         ]},
         { id: "home", title: "HOME", priority: "Medium", items: [
           "Long-scroll: Hero, Introduction, Practice Areas (7 tabs → /expertise/), Featured Team (4–6 Partners → /team/), Deal Highlights (dynamic, CPT), News Teaser, Careers Teaser, Contact (footer area)",
@@ -303,6 +317,15 @@
           "Design concept based on weil.com templates with custom solutions",
           "Figma: Home, Profile, Listing, Practice Area, News, Careers",
           "Mobile-first, responsive"
+        ]},
+        { id: "migration", title: "DATA MIGRATION", priority: "Medium", items: [
+          "Automated scraping of existing profile data from weil.com (Bio, Title, Office, Practice Areas, linked News, Photos)",
+          "Data preparation and cleanup for WordPress import",
+          "Template spreadsheet for missing fields (Chambers Quotes, Recognition)",
+          "Import all data incl. photos into WordPress via ACF mapping",
+          "Result: ~70–80% pre-filled profiles — assistants only complete missing fields",
+          "Prerequisite: client approval to scrape weil.com profiles",
+          "Option: manual template preparation (spreadsheet for client to fill + import)"
         ]}
       ];
 
@@ -539,7 +562,7 @@
                   </div>
 
                   <div className="fu d2" style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "repeat(3,1fr)", gap: 16, marginBottom: 32 }}>
-                    {[{ label: "Modules", value: 8, color: "#1a1a1a" }, { label: "Timeline", value: "9 Weeks", color: "#43a047" }, { label: "Templates", value: 8, color: "#455a64", sub: "5 main pages + 3 dynamic templates (profiles, articles, practice areas)" }].map(k => (
+                    {[{ label: "Modules", value: 10, color: "#1a1a1a" }, { label: "Timeline", value: "9 Weeks", color: "#43a047" }, { label: "Templates", value: 8, color: "#455a64", sub: "5 main pages + 3 dynamic templates (profiles, articles, practice areas)" }].map(k => (
                       <div key={k.label} style={{ background: "#fff", borderRadius: 8, padding: "22px 24px", border: "1px solid #f0f0f0", position: "relative", overflow: "hidden" }}>
                         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: k.color }} />
                         <div style={{ fontSize: 36, fontWeight: 700, color: k.color, fontFamily: hf, lineHeight: 1 }}>{k.value}</div>
